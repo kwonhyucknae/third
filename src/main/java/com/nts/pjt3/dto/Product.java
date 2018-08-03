@@ -2,7 +2,7 @@ package com.nts.pjt3.dto;
 
 public class Product {
 	private int id;
-	private int category_id;
+	private int categoryId;
 	private int displayInfoId;
 	private String name;
 	private String description;
@@ -15,10 +15,25 @@ public class Product {
 	private String tel;
 	private String homepage;
 	private String email;
-	private String create_date;
-	private String modify_date;
-	
-	
+	private String createDate;
+	private String modifyDate;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public int getDisplayInfoId() {
 		return displayInfoId;
 	}
@@ -33,6 +48,30 @@ public class Product {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
 	}
 
 	public String getOpeningHours() {
@@ -91,69 +130,29 @@ public class Product {
 		this.email = email;
 	}
 
-	public int getId() {
-		return id;
+	public String getCreateDate() {
+		return createDate;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
 
-	public int getCategory_id() {
-		return category_id;
+	public String getModifyDate() {
+		return modifyDate;
 	}
 
-	public void setCategory_id(int category_id) {
-		this.category_id = category_id;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getEvent() {
-		return event;
-	}
-
-	public void setEvent(String event) {
-		this.event = event;
-	}
-
-	public String getCreate_date() {
-		return create_date;
-	}
-
-	public void setCreate_date(String create_date) {
-		this.create_date = create_date;
-	}
-
-	public String getModify_date() {
-		return modify_date;
-	}
-
-	public void setModify_date(String modify_date) {
-		this.modify_date = modify_date;
+	public void setModifyDate(String modifyDate) {
+		this.modifyDate = modifyDate;
 	}
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", category_id=" + category_id + ", displayInfoId=" + displayInfoId + ", name="
+		return "Product [id=" + id + ", categoryId=" + categoryId + ", displayInfoId=" + displayInfoId + ", name="
 				+ name + ", description=" + description + ", content=" + content + ", event=" + event
 				+ ", openingHours=" + openingHours + ", placeName=" + placeName + ", placeLot=" + placeLot
 				+ ", placeStreet=" + placeStreet + ", tel=" + tel + ", homepage=" + homepage + ", email=" + email
-				+ ", create_date=" + create_date + ", modify_date=" + modify_date + "]";
+				+ ", createDate=" + createDate + ", modifyDate=" + modifyDate + "]";
 	}
-	
+
 }
