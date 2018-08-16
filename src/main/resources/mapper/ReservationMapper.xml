@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.nts.pjt5_6.dao.ReservationMapper">
+	<insert id ="insertReservationInfo" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO reservation_info(
+			product_id
+			,reservation_name,reservation_tel,reservation_email,reservation_date
+			,create_date,modify_date
+			) 
+		VALUES(
+			#{productId},
+			#{reservationName},#{reservationTel},#{reservationEmail},#{reservationDate},
+			NOW(),NOW()
+			)
+	</insert>
+	
+	<insert id ="insertReservationInfoPrice" parameterType="map">
+		INSERT INTO reservation_info_price(
+			reservation_info_id
+			,product_price_id
+			,count
+			) 
+		VALUES
+		<foreach collection="list" item="singlePrice" separator=", ">
+			(
+			#{singlePrice.reservationInfoId},
+			#{singlePrice.productPriceId},
+			#{singlePrice.count}
+			)
+		</foreach>
+	</insert>
+	
+	<select id="selectReservationInfo" parameterType="int" resultType="com.nts.pjt5_6.dto.ReservationInfo">
+    	SELECT reservInfo.id
+			,reservInfo.product_id
+    		,reservInfo.reservation_name
+    		,reservInfo.reservation_tel
+		    ,reservInfo.reservation_email
+		    ,reservInfo.reservation_date
+		    ,reservInfo.create_date
+		    ,reservInfo.modify_date
+		FROM reservation_info AS reservInfo
+		WHERE reservInfo.id = #{id};
+	</select>
+	
+	<select id="selectReservationPrices" parameterType="int" resultType="com.nts.pjt5_6.dto.ReservationPrices">
+ 		SELECT reservPrice.id
+			,reservPrice.reservation_info_id
+			,reservPrice.product_price_id
+			,reservPrice.count
+    	FROM reservation_info_price AS reservPrice
+    	WHERE reservation_info_id = #{id}
+    </select>
+    
+	<select id="selectReservationInfoByEmail" parameterType="String" resultType="com.nts.pjt5_6.dto.ReservationInfoByEmail">
+    	SELECT reservInfo.id
+			,reservInfo.product_id
+            ,description AS product_description
+            ,content AS product_content
+            ,reservation_name
+            ,reservation_tel
+            ,reservation_email
+            ,sum_price
+            ,reservation_date
+            ,reservInfo.create_date
+            ,reservInfo.modify_date
+       FROM reservation_info AS reservInfo,
+			product AS prod,
+            (SELECT reservation_info.id,sum(price * count) AS sum_price
+			 FROM reservation_info,reservation_info_price,product_price
+             WHERE reservation_info.id = reservation_info_price.reservation_info_id
+             AND reservation_info_price.product_price_id = product_price.id
+             AND reservation_email = #{email}
+             GROUP BY reservation_info.id
+            ) AS Counts
+	   WHERE reservInfo.product_id = prod.id
+       AND Counts.id = reservInfo.id
+       AND reservInfo.reservation_email = #{email}
+    </select> 
+</mapper>

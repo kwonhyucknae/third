@@ -12,7 +12,7 @@
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>com.nts.pjt3.config.ApplicationConfig
+		<param-value>com.nts.pjt5_6.config.ApplicationConfig
 		</param-value>
 	</context-param>
 	<listener>
@@ -39,7 +39,7 @@
 	    </init-param>
 	    <init-param>
 	      <param-name>contextConfigLocation</param-name>
-	      <param-value>com.nts.pjt3.config.WebMvcContextConfiguration</param-value>
+	      <param-value>com.nts.pjt5_6.config.WebMvcContextConfiguration</param-value>
 	    </init-param>
 	    <load-on-startup>1</load-on-startup>
 	  </servlet>

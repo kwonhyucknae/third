@@ -19,9 +19,9 @@
 		<div class="header">
 			<header class="header_tit">
 				<h1 class="logo">
-					<a href="https://m.naver.com/" class="lnk_logo" title="네이버"> <span
+					<a href="./main" class="lnk_logo" title="네이버"> <span
 						class="spr_bi ico_n_logo">네이버</span>
-					</a> <a href="./myreservation.html" class="lnk_logo" title="예약"> <span
+					</a> <a href="./main" class="lnk_logo" title="예약"> <span
 						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
@@ -61,29 +61,10 @@
 				</div>
 			</div>
 			<div class="section_event_tab">
-				<ul class="event_tab_lst tab_lst_min">
+				<ul class="event_tab_lst tab_lst_min" data-clickedCategory="0">
 					<li class="item" data-category="0"><a class="anchor active">
 							<span>전체리스트</span>
 					</a></li>
-					<!-- <li class="item" data-category="1"><a class="anchor"> <span>전시</span>
-					</a></li>
-					<li class="item" data-category="2"><a class="anchor"> <span>뮤지컬</span>
-					</a></li>
-					<li class="item" data-category="3"><a class="anchor"> <span>콘서트</span>
-					</a></li>
-					<li class="item" data-category="4"><a class="anchor"> <span>클래식</span>
-					</a></li>
-					<li class="item" data-category="5"><a class="anchor"> <span>연극</span>
-					</a></li> -->
-					<!-- li class="item" data-category="7">
-                        <a class="anchor"> <span>클래스</span> </a>
-                    </li>
-                    <li class="item" data-category="8">
-                        <a class="anchor"> <span>체험</span> </a>
-                    </li>
-                    <li class="item" data-category="9">
-                        <a class="anchor last"> <span>키즈</span> </a>
-                    </li -->
 				</ul>
 			</div>
 			<div class="section_event_lst">
@@ -118,12 +99,12 @@
 	</footer>
 
 	<script type="rv-template" id="categoryItem">
-		<li class="item" data-category="{id}"><a class="anchor"> <span>{name}</span></a></li>
+		<li class="item" data-category="{{id}}"><a class="anchor"> <span>{{name}}</span></a></li>
 	</script>
 	
 	<script type="rv-template" id="promotionItem">
-    	<li class="item" style="background-image: url(http://211.249.62.123/productImages/{productId}/{productImageId});">
-        	<a href="#"> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
+    	<li class="item" style="background-image: url(./productImages/{{productId}}/{{productImageId}});">
+        	<a> <span class="img_btm_border"></span> <span class="img_right_border"></span> <span class="img_bg_gra"></span>
             	<div class="event_txt">
                 	<h4 class="event_txt_tit"></h4>
                 	<p class="event_txt_adr"></p>
@@ -135,19 +116,25 @@
 
 	<script type="rv-template" id="itemList">
         <li class="item">
-            <a href="detail.html?id={id}" class="item_book">
+            <a href="detail?id={{displayInfoId}}" class="item_book">
                 <div class="item_preview">
-                    <img alt="{description}" class="img_thumb" src="http://211.249.62.123/productImages/{id}?type=th">
+                    <img alt="{{description}}" class="img_thumb" src="./productImages/{{id}}?type=th">
                     <span class="img_border"></span>
                 </div>
                 <div class="event_txt">
-                    <h4 class="event_txt_tit"> <span>{description}</span> <small class="sm">{placeName}</small> </h4>
-                    <p class="event_txt_dsc">{content}</p>
+                    <h4 class="event_txt_tit"> <span>{{description}}</span> <small class="sm">{{placeName}}</small> </h4>
+                    <p class="event_txt_dsc">{{content}}</p>
                 </div>
             </a>
         </li>
     </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script type="text/javascript" src="./resources/js/utils/ajax.handler.js"></script>
+    <script type="text/javascript" src="./resources/js/utils/animation.handler.js"></script>
+    <script type="text/javascript" src="./resources/js/pages/main/main.display.js"></script>
+    <script type="text/javascript" src="./resources/js/pages/main/main.event.js"></script>
 	<script type="text/javascript"
-		src="<c:url value='resources/js/main.js'/>"></script>
+		src="<c:url value='resources/js/pages/main/main.js'/>"></script>
 </body>
 </html>

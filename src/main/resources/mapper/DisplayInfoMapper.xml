@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nts.pjt5_6.dao.DisplayInfoMapper">
+	<select id="selectProductById" parameterType="int" resultType="com.nts.pjt5_6.dto.Product">
+    	SELECT product.id,category_id,dpInfo.id AS display_info_id,
+    		category.name,description,content,event,opening_hours,
+    		place_name,place_lot,place_street,
+    		tel,homepage,email,
+    		dpInfo.create_date,
+    		dpInfo.modify_date
+    	FROM product,display_info AS dpInfo,category
+    	WHERE product.id= dpInfo.product_id 
+    	AND category_id = category.id 
+    	AND dpInfo.id = #{dpInfoId}
+    </select>
+    
+    <select id="selectProductImagesInfo" parameterType="int" resultType="com.nts.pjt5_6.dto.ProductImages">
+    	SELECT product.id AS product_id,prodImage.id AS product_image_id,
+    		type,file_id,file_name,save_file_name,
+    		content_type,
+    		delete_flag,
+    		flInfo.create_date,
+    		flInfo.modify_date
+    	FROM product,product_image AS prodImage,
+    		file_info AS flInfo,
+    		display_info AS dpInfo
+    	WHERE product.id = prodImage.product_id 
+    	AND product.id = dpInfo.product_id 
+    	AND prodImage.file_id = flInfo.id 
+    	AND type != 'th' AND dpInfo.id = #{dpInfoId}
+    	ORDER BY type <![CDATA[ <> ]]> 'ma'
+    	LIMIT 2
+    </select>
+    
+    <select id="selectDisplayImagesInfo" parameterType="int" resultType="com.nts.pjt5_6.dto.DisplayInfoImages">
+		SELECT product.id,display_info_id,file_id,
+			file_name,save_file_name,
+			content_type,
+			delete_flag,
+			flInfo.create_date,
+			flInfo.modify_date
+		FROM product,display_info AS dpInfo,
+			display_info_image AS dpInfoImg,
+			file_info AS flInfo
+		WHERE product.id = dpInfo.product_id 
+		AND dpInfo.id = dpInfoImg.display_info_id 
+		AND dpInfoImg.file_id = flInfo.id 
+		AND dpInfo.id = #{dpInfoId}
+    </select>
+
+	<select id="selectCommentImagesByCommentId" parameterType="int" resultType="com.nts.pjt5_6.dto.ReservationUserCommentImages">
+		SELECT reservUserCommentImg.id,reservation_info_id,reservation_user_comment_id,
+			file_id,file_name,save_file_name,
+			content_type,
+			delete_flag,
+			create_date,
+			modify_date
+    	FROM reservation_user_comment_image AS reservUserCommentImg,
+    		file_info AS flInfo
+    	WHERE reservUserCommentImg.file_id = flInfo.id 
+    	AND reservUserCommentImg.reservation_user_comment_id = #{commentId}
+    </select>
+    
+    <select id="selectCommentsByDisplayId" parameterType="int" resultType="com.nts.pjt5_6.dto.Comments">
+    	SELECT reservUserComment.id,product.id AS product_id,reservation_info_id,
+    		score,comment,
+    		reservInfo.reservation_email,reservInfo.reservation_date,
+    		reservUserComment.create_date,
+    		reservUserComment.modify_date
+    	FROM product,reservation_user_comment AS reservUserComment,
+    		display_info AS diInfo, 
+    		reservation_info AS reservInfo
+    	WHERE product.id = reservUserComment.product_id 
+    	AND diInfo.product_id = product.id 
+    	AND reservUserComment.reservation_info_id = reservInfo.id 
+    	AND diInfo.id = #{dpInfoId}
+	</select>
+	
+	<select id="selectAvgScore" parameterType="int" resultType="double">
+   		SELECT ROUND(COALESCE(AVG(score),0.0),1) AS avgScore
+   		FROM product,
+   			display_info AS dpInfo,
+   			reservation_user_comment AS reservUserComment
+   		WHERE product.id = reservUserComment.product_id 
+   		AND dpInfo.product_id = product.id 
+   		AND dpInfo.id = #{dpInfoId}
+   	</select>
+   	
+   	<select id="selectProductPrices" parameterType="int" resultType="com.nts.pjt5_6.dto.ProductPrices">
+   		SELECT prodPrice.id,product.id AS product_id,
+   			price_type_name,
+   			price,discount_rate,
+   			product.create_date,
+   			product.modify_date
+   		FROM product,display_info AS dpInfo, 
+   			product_price AS prodPrice
+   		WHERE product.id = prodPrice.product_id 
+   		AND dpInfo.id = product.id 
+   		AND dpInfo.id = #{dpInfoId}
+   	</select>
+	
+</mapper>
