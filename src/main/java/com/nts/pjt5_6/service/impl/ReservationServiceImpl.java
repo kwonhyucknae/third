@@ -43,7 +43,6 @@ public class ReservationServiceImpl implements ReservationService{
 		ReservationInfo returnReservInfo = reservationMapper.selectReservationInfo(reservInfoData.getId());
 		returnReservInfo.setPrices(reservationMapper.selectReservationPrices(reservInfoData.getId()));
 		
-		System.out.println(returnReservInfo);
 		
 		return returnReservInfo;
 	}
@@ -54,8 +53,13 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 	
 	@Override
-	public int insertReservationInfoPrice(List<ReservationPrices> reservationPrices) {
-		int insertCount = reservationMapper.insertReservationInfoPrice(reservationPrices);
-		return insertCount;
+	public int updateReservationCancel(int reservInfoId) {
+		return reservationMapper.updateReservationCancel(reservInfoId);
 	}
+	
+//	@Override
+//	public int insertReservationInfoPrice(List<ReservationPrices> reservationPrices) {
+//		int insertCount = reservationMapper.insertReservationInfoPrice(reservationPrices);
+//		return insertCount;
+//	}
 }

@@ -32,4 +32,9 @@ public class ReservationController {
 		model.addAttribute("displayProductInfoId",dpInfoId);
 		return "reserve";
 	}
+	
+	@GetMapping(path = "/myreservation")
+	public String myReservationConvert() {
+		return "myreservation";
+	}
 }

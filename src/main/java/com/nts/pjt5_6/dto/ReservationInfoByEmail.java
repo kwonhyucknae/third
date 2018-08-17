@@ -1,5 +1,7 @@
 package com.nts.pjt5_6.dto;
 
+import java.util.Date;
+
 public class ReservationInfoByEmail {
 	private int id;
 	private int productId;
@@ -9,9 +11,10 @@ public class ReservationInfoByEmail {
 	private String reservationTel;
 	private String reservationEmail;
 	private int sumPrice;
-	private String reservationDate;
-	private String createDate;
-	private String modifyDate;
+	private int cancelFlag;
+	private Date reservationDate;
+	private Date createDate;
+	private Date modifyDate;
 	
 	public int getId() {
 		return id;
@@ -61,22 +64,28 @@ public class ReservationInfoByEmail {
 	public void setSumPrice(int sumPrice) {
 		this.sumPrice = sumPrice;
 	}
-	public String getReservationDate() {
+	public int getCancelFlag() {
+		return cancelFlag;
+	}
+	public void setCancelFlag(int cancelFlag) {
+		this.cancelFlag = cancelFlag;
+	}
+	public Date getReservationDate() {
 		return reservationDate;
 	}
-	public void setReservationDate(String reservationDate) {
+	public void setReservationDate(Date reservationDate) {
 		this.reservationDate = reservationDate;
 	}
-	public String getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	public String getModifyDate() {
+	public Date getModifyDate() {
 		return modifyDate;
 	}
-	public void setModifyDate(String modifyDate) {
+	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
 	

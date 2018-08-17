@@ -15,4 +15,5 @@ public interface ReservationMapper {
 	public ReservationInfo selectReservationInfo(int reservationInfoId);
 	public List<ReservationPrices> selectReservationPrices(int reservationInfoId);
 	public List<ReservationInfoByEmail> selectReservationInfoByEmail(String emailAddr);
+	public int updateReservationCancel(int reservInfoId);
 }

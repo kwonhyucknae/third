@@ -25,9 +25,19 @@
 						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
-				<a href="./bookinglogin.html" class="btn_my"> <span
-					class="viewReservation" title="예약확인">예약확인</span>
-				</a>
+				<c:choose>
+			    	<c:when test="${empty cookie.loginEmail.value}">
+			        	<a href="./bookingLogin" class="btn_my"> 
+			        	<span class="viewReservation" title="예약확인"> 예약확인</span>
+						</a>
+				    </c:when>
+				    <c:otherwise>
+				        <a href="./myreservation" class="btn_my"> 
+							<span class="viewReservation" title="예약확인">${cookie.loginEmail.value}</span>
+						</a>
+				    </c:otherwise>
+				</c:choose>
+				
 			</header>
 		</div>
 		<hr>

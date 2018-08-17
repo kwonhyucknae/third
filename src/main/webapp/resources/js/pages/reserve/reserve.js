@@ -5,12 +5,11 @@ const postFormat = new formPost();
 document.addEventListener("DOMContentLoaded", function() {
 	
 	let dpInfoId = document.querySelector("div.ct").getAttribute("data-dpInfoId");
-	main.getDisplayInfo("/products/" + dpInfoId);
+	reserve.getDisplayInfo("/products/" + dpInfoId);
 	
-	console.log(document.getElementById("name").value);
 });
 
-const main = {
+const reserve = {
 		getDisplayInfo : (url) => {
 			ajaxHandler.sendAsGet(url)
 			.then(displayInfoData => {

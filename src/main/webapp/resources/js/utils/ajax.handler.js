@@ -20,6 +20,17 @@ const ajaxHandler = {
 			
 			xhr.send(JSON.stringify(params));
 		})
+	},
+	
+	sendAsPut : function(url){
 		
+		return new Promise((resolve, reject) => {
+			const xhr = new XMLHttpRequest();
+			xhr.open("PUT", url);
+			xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+			xhr.onload = () => resolve(xhr.responseText);
+			xhr.onerror = () => reject(xhr.statusText);
+			xhr.send();
+		})
 	}
 };

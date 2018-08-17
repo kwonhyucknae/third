@@ -63,6 +63,7 @@
             ,reservation_tel
             ,reservation_email
             ,sum_price
+            ,reservInfo.cancel_flag
             ,reservation_date
             ,reservInfo.create_date
             ,reservInfo.modify_date
@@ -79,4 +80,10 @@
        AND Counts.id = reservInfo.id
        AND reservInfo.reservation_email = #{email}
     </select> 
+    
+    <update id="updateReservationCancel" parameterType="int">
+    	UPDATE reservation_info
+    	SET cancel_flag = 1
+    	WHERE id = #{reservInfoId}
+    </update>
 </mapper>
