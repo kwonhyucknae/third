@@ -11,7 +11,7 @@ public class ReservationController {
 	
 	
 	@GetMapping(path = "/main")
-	public String mainConvert(ModelMap model) {
+	public String mainConvert() {
 		return "main";
 	}
 	
@@ -37,4 +37,10 @@ public class ReservationController {
 	public String myReservationConvert() {
 		return "myreservation";
 	}
+	
+	@GetMapping(path = "/reviewWrite")
+	public String reviewWriteFormConvert() {
+		return "reviewWrite";
+	}
+	
 }
