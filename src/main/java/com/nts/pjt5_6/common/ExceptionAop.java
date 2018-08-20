@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class ExceptionAop {
-
 	@Pointcut("within(com.nts.pjt5_6.service.impl.*)")
 	private void pointcutMethod() {
 	}
@@ -33,4 +32,5 @@ public class ExceptionAop {
 			System.out.println("기타 예외 발생");
 		}
 	}
+
 }

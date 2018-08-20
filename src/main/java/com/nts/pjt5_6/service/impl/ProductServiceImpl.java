@@ -16,13 +16,18 @@ public class ProductServiceImpl implements ProductService {
 	ProductMapper productMapper;
 
 	@Override
-	public List<Product> getProducts(Integer categoryId, Integer start) {
+	public List<Product> getProducts(int categoryId, int start) {
 		return productMapper.selectProductsPaging(start, ProductService.LIMIT, categoryId);
 	}
 
 	@Override
 	public int getTotalCount(int categoryId) {
 		return productMapper.selectCountDisplayInfo(categoryId);
+	}
+	
+	@Override
+	public Product getProductById(int productId) {
+		return productMapper.selectProductByProductId(productId);
 	}
 	
 }

@@ -17,7 +17,7 @@ class formPost {
 		params.reservationName = document.getElementById("name").value;
 		params.reservationTel = document.querySelector("[name='tel']").value;
 		params.reservationEmail = document.querySelector("[name='email']").value;
-		params.reservationDate = this.randomDate(this.todayDate.getTime(),this.todayDate.getTime() + (1000*60*60*24*5));
+		params.reservationDate = this.randomDate(this.todayDate.getTime(),this.todayDate.getTime() + (1000 * 60 * 60 * 24 * 5));
 		params.prices = this.getPrices();
 		console.log("params",params);
 		return params;
@@ -40,5 +40,6 @@ class formPost {
 //		endDate.setDate(endDate.getDate() + 5);
 		
 		return new Date(startDate + Math.random() * (endDate - startDate)).toJSON().slice(0, 10);
+		//calender <---
 	}
 }

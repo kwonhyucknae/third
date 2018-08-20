@@ -21,6 +21,7 @@ class reservDisp {
 		let cancelCount = 0;
 		
 		ReservInfo.forEach((element)=>{
+			element.sumPrice = formatter.convertMoneyWithCommaByText(element.sumPrice);
 			if(Number(element.cancelFlag) === this.CANCEL_RESERV){
 				cancelCount++;
 				this.cardCancelSection.innerHTML += Handlebars.compile(this.cancelCardTemplate.innerText)(element);

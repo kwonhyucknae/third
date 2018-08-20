@@ -6,13 +6,22 @@
 	<insert id ="insertReservationInfo" parameterType="map" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO reservation_info(
 			product_id
-			,reservation_name,reservation_tel,reservation_email,reservation_date
-			,create_date,modify_date
+			,reservation_name
+			,reservation_tel
+			,reservation_email
+			,reservation_date
+			,create_date
+			,modify_date
 			) 
-		VALUES(
+		VALUES
+			(
 			#{productId},
-			#{reservationName},#{reservationTel},#{reservationEmail},#{reservationDate},
-			NOW(),NOW()
+			#{reservationName}
+			,#{reservationTel}
+			,#{reservationEmail}
+			,#{reservationDate}
+			,NOW()
+			,NOW()
 			)
 	</insert>
 	

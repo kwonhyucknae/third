@@ -27,7 +27,7 @@ public class ReservationInfoApiController {
 	
 	@PostMapping
 	public ReservationInfo addReservationInfo(@RequestBody ReservationInfo reservationInfo) {
-		ReservationInfo retReservationInfo = reservationService.insertReservationInfo(reservationInfo);;
+		ReservationInfo retReservationInfo = reservationService.insertReservationInfo(reservationInfo);
 		return retReservationInfo;
 	}
 	

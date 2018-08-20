@@ -7,7 +7,8 @@ import com.nts.pjt5_6.dto.Product;
 public interface ProductService {
 	public static final Integer LIMIT = 4;
 
-	public List<Product> getProducts(Integer categoryId,Integer start);
+	public List<Product> getProducts(int categoryId,int start);
 	public int getTotalCount(int categoryId);
+	public Product getProductById(int productId);
 
 }

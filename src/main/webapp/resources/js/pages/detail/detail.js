@@ -1,6 +1,9 @@
+const header = new headerHandler();
+
 document.addEventListener("DOMContentLoaded", function() {
 	let dpInfoId = document.querySelector("div.ct.main").getAttribute("data-dpInfoId");
 	detail.getApiDataAboutDisplay("/products/" + dpInfoId);
+	header.setHeaderEmail();
 });
 
 const detail ={

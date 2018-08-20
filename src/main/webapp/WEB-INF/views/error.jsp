@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div id="container">
-		<div class="header">
+		<div class="header" data-cookie ="${cookie.loginEmail.value}">
 			<header class="header_tit">
 				<h1 class="logo">
 					<a href="./main" class="lnk_logo" title="네이버"> <span
@@ -25,18 +25,10 @@
 						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
-				<c:choose>
-			    	<c:when test="${empty cookie.loginEmail.value}">
-			        	<a href="./bookingLogin" class="btn_my"> 
-			        	<span class="viewReservation" title="예약확인"> 예약확인</span>
-						</a>
-				    </c:when>
-				    <c:otherwise>
-				        <a href="./myreservation" class="btn_my"> 
-						<span class="viewReservation" title="예약확인">${cookie.loginEmail.value}</span>
-						</a>
-				    </c:otherwise>
-				</c:choose>
+			    <a href="./bookingLogin" class="btn_my"> 
+			        <span class="viewReservation" title="예약확인"> 예약확인</span>
+				</a>
+
 			</header>
 		</div>
 		<hr>
@@ -70,5 +62,7 @@
 			<span class="copyright">© NAVER Corp.</span>
 		</div>
 	</footer>
+	<script type="text/javascript" src="./resources/js/utils/header.handler.js"></script>
+	<script type="text/javascript" src="./resources/js/pages/error/error.js"></script>
 </body>
 </html>

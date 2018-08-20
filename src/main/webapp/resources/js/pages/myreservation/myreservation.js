@@ -1,5 +1,6 @@
 const reservDis = new reservDisp();
 const reservEven = new reservEvent();
+const formatter = new textFormatter();
 
 document.addEventListener("DOMContentLoaded", function() {
 	

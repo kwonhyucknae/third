@@ -22,6 +22,20 @@ const ajaxHandler = {
 		})
 	},
 	
+	sendImageFileAsPost : function(url, images){
+		return new Promise((resolve, reject) => {
+			const xhr = new XMLHttpRequest();
+			let formData = new FormData();
+			formData.append("file",images);
+			
+			xhr.open("POST", url);
+			xhr.onload = () => resolve(xhr.responseText);
+			xhr.onerror = () => reject(xhr.statusText);
+			
+			xhr.send(formData);
+		})
+	},
+	
 	sendAsPut : function(url){
 		
 		return new Promise((resolve, reject) => {

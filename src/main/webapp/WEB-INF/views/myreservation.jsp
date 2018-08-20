@@ -225,7 +225,7 @@
 					<div class="middle">
 						<div class="card_detail">
 							<em class="booking_number">No.{{id}}</em>
-							<h4 class="tit">{{productDescription}}</h4>
+							<h4 class="tit" data-productId="{{productId}}">{{productDescription}}</h4>
 								<ul class="detail">
 									<li class="item">
 										<span class="item_tit">일정</span>
@@ -260,7 +260,7 @@
 									</em>
 								</div>
 								<div class="booking_cancel">
-									<a href="./reviewWrite.html"><button class="btn"><span>예매자 리뷰 남기기</span></button></a>
+									<a href="./reviewWrite?productId={{productId}}&reservInfoId={{id}}"><button class="btn"><span>예매자 리뷰 남기기</span></button></a>
 								</div>
 							</div>
 						</div>
@@ -330,6 +330,7 @@
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 	<script type="text/javascript" src="./resources/js/utils/ajax.handler.js"></script>
+	<script type="text/javascript" src="./resources/js/utils/text.formatter.js"></script>
 	<script type="text/javascript" src="./resources/js/pages/myreservation/myreservation.display.js"></script>
 	<script type="text/javascript" src="./resources/js/pages/myreservation/myreservation.event.js"></script>
 	<script type="text/javascript" src="./resources/js/pages/myreservation/myreservation.js"></script>

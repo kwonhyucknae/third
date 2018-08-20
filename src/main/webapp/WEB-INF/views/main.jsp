@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +11,12 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
 <title>네이버 예약</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <link href="<c:url value='/resources/css/style.css'/>"
 	rel="stylesheet">
 </head>
 <body>
 	<div id="container">
-		<div class="header">
+		<div class="header" data-cookie ="${cookie.loginEmail.value}">
 			<header class="header_tit">
 				<h1 class="logo">
 					<a href="./main" class="lnk_logo" title="네이버"> <span
@@ -25,19 +25,9 @@
 						class="spr_bi ico_bk_logo">예약</span>
 					</a>
 				</h1>
-				<c:choose>
-			    	<c:when test="${empty cookie.loginEmail.value}">
-			        	<a href="./bookingLogin" class="btn_my"> 
-			        	<span class="viewReservation" title="예약확인"> 예약확인</span>
-						</a>
-				    </c:when>
-				    <c:otherwise>
-				        <a href="./myreservation" class="btn_my"> 
-							<span class="viewReservation" title="예약확인">${cookie.loginEmail.value}</span>
-						</a>
-				    </c:otherwise>
-				</c:choose>
-				
+			     <a href="./bookingLogin" class="btn_my"> 
+			     <span class="viewReservation" title="예약확인"> 예약확인</span>
+				</a>
 			</header>
 		</div>
 		<hr>
@@ -142,6 +132,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script type="text/javascript" src="./resources/js/utils/ajax.handler.js"></script>
     <script type="text/javascript" src="./resources/js/utils/animation.handler.js"></script>
+    <script type="text/javascript" src="./resources/js/utils/header.handler.js"></script>
     <script type="text/javascript" src="./resources/js/pages/main/main.display.js"></script>
     <script type="text/javascript" src="./resources/js/pages/main/main.event.js"></script>
 	<script type="text/javascript"

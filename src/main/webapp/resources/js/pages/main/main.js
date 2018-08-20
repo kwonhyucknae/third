@@ -1,9 +1,11 @@
+const header = new headerHandler();
+
 document.addEventListener("DOMContentLoaded", function() {
 	
 	main.getCategoryItems("/categories");
 	main.getProductItems("/products");
 	main.getPromotionItems("/promotions");
-	
+	header.setHeaderEmail();
 });
 
 const main = {

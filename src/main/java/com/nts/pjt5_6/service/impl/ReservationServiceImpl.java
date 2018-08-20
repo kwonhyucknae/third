@@ -17,13 +17,13 @@ import com.nts.pjt5_6.service.ReservationService;
 public class ReservationServiceImpl implements ReservationService{
 	
 	@Autowired
-	ReservationMapper reservationMapper;
+	private ReservationMapper reservationMapper;
 	
 	@Override
 	@Transactional(readOnly=false)
 	public ReservationInfo insertReservationInfo(ReservationInfo reservInfoData) {
 		
-		int insertCount = reservationMapper.insertReservationInfo(reservInfoData);
+		reservationMapper.insertReservationInfo(reservInfoData);
 		
 		List<ReservationPrices> reservationPrices = new ArrayList<>();
 		
@@ -56,10 +56,5 @@ public class ReservationServiceImpl implements ReservationService{
 	public int updateReservationCancel(int reservInfoId) {
 		return reservationMapper.updateReservationCancel(reservInfoId);
 	}
-	
-//	@Override
-//	public int insertReservationInfoPrice(List<ReservationPrices> reservationPrices) {
-//		int insertCount = reservationMapper.insertReservationInfoPrice(reservationPrices);
-//		return insertCount;
-//	}
+
 }

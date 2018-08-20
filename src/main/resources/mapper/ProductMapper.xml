@@ -31,4 +31,12 @@
         AND category_id = #{categoryId}
         </if>
     </select>
+    
+    <select id="selectProductByProductId" parameterType="int" resultType="com.nts.pjt5_6.dto.Product">
+    	SELECT product.id,category_id
+    		,description
+    		,content
+    	FROM product
+    	WHERE id = #{productId}
+    </select>
 </mapper>
