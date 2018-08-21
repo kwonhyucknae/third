@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nts.pjt5_6.dao.DisplayInfoMapper;
 import com.nts.pjt5_6.dao.ProductMapper;
 import com.nts.pjt5_6.dto.Product;
 import com.nts.pjt5_6.service.ProductService;
@@ -14,7 +15,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	ProductMapper productMapper;
-
+	@Autowired
+	private DisplayInfoMapper dispInfoMapper;
+	
 	@Override
 	public List<Product> getProducts(int categoryId, int start) {
 		return productMapper.selectProductsPaging(start, ProductService.LIMIT, categoryId);
@@ -22,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public int getTotalCount(int categoryId) {
-		return productMapper.selectCountDisplayInfo(categoryId);
+		return dispInfoMapper.selectCountDisplayInfo(categoryId);
 	}
 	
 	@Override

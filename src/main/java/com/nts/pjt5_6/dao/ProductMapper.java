@@ -11,6 +11,6 @@ import com.nts.pjt5_6.dto.Product;
 public interface ProductMapper {
 	
 	public List<Product> selectProductsPaging(@Param("start")int start, @Param("limit")int limit, @Param("categoryId")int categoryId);
-	public int selectCountDisplayInfo(@Param("categoryId")int categoryId);
 	public Product selectProductByProductId(@Param("productId")int productId);
+	public Product selectProductByDisplayId(int dpInfoId);
 }

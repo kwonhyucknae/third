@@ -44,7 +44,7 @@ public class ProductImageApiControllerTest {
 	private MockMvc mockMvc;
 	@Before
 	public void setUp() throws Exception{
-//		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(productImageApiController).build();
 	}
 	

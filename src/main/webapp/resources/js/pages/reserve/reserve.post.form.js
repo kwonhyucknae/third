@@ -10,10 +10,9 @@ class formPost {
 	}
 	
 	postFormatter(){
-		console.log(document.getElementById("name"));
-		console.log(document.querySelector("[name='tel']"));
 		let params ={};
 		params.productId = document.querySelector("div.preview_txt").getAttribute("data-id");
+		params.displayInfoId = document.querySelector("div.ct").getAttribute("data-dpInfoId");
 		params.reservationName = document.getElementById("name").value;
 		params.reservationTel = document.querySelector("[name='tel']").value;
 		params.reservationEmail = document.querySelector("[name='email']").value;

@@ -8,7 +8,8 @@ import org.apache.ibatis.annotations.Param;
 import com.nts.pjt5_6.dto.ProductImages;
 
 @Mapper
-public interface ImageMapper {
+public interface ProductImageMapper {
 	public List<ProductImages> selectProductImagesInfoByIdAndType(@Param("productId")int productId, @Param("type")String type);
 	public ProductImages selectProductImagesInfoByProductImageId(@Param("prodImageId")int prodImageId);
+	public List<ProductImages> selectProductImagesInfoByDispId(int dpInfoId);
 }

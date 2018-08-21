@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nts.pjt5_6.dao.ProductPriceMapper">
+   	<select id="selectProductPrices" parameterType="int" resultType="ProductPrices">
+   		SELECT prodPrice.id
+			,product.id AS product_id
+            ,price_type_name
+            ,price
+            ,discount_rate
+            ,product.create_date
+            ,product.modify_date
+   		FROM product
+        INNER JOIN display_info AS dpInfo
+				ON dpInfo.id = product.id 
+		INNER JOIN product_price AS prodPrice
+				ON product.id = prodPrice.product_id 
+   		WHERE dpInfo.id = #{dpInfoId}
+   	</select>
+</mapper>

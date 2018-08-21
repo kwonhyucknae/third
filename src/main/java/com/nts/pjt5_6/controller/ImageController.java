@@ -25,7 +25,8 @@ import com.nts.pjt5_6.service.ImageService;
 @RestController
 public class ImageController {
 	private static final int FIRST_IMG = 0;
-
+	private static final String FILE_LOCATION = "C:\\tmp\\";
+	
 	@Autowired
 	private ImageService imageService;
 	
@@ -90,8 +91,11 @@ public class ImageController {
 	public @ResponseBody byte[] getCommentImage(@PathVariable(name = "commentId") int commentId,
 			HttpServletRequest request) throws IOException{
 		List<ReservationUserCommentImages> displayImagesInfo = displayInfoService.getCommentImagesByCommentID(commentId);
+		System.out.println("commentId===" + commentId);
+		System.out.println(displayImagesInfo);
 		String imgFileName = displayImagesInfo.get(FIRST_IMG).getSaveFileName();
-		InputStream inputStream = new FileInputStream(request.getServletContext().getRealPath(imgFileName));
+		InputStream inputStream = new FileInputStream(FILE_LOCATION + imgFileName);
+//		InputStream inputStream = new FileInputStream(request.getServletContext().getRealPath(imgFileName));
 		
 		return IOUtils.toByteArray(inputStream); 
 	}

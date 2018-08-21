@@ -54,16 +54,16 @@ public class ProductServiceTest {
 		verify(productMapper, atLeast(1)).selectProductsPaging(0, 4 ,1);
 	}
 	
-	@Test
-	public void testGetTotalCount() {
-		int CountAllTestData = 1;
-		int CountDisplayInfoByCategoryIdTestData = 2;
-		
-		when(productMapper.selectCountDisplayInfo(0)).thenReturn(CountAllTestData);
-		when(productMapper.selectCountDisplayInfo(1)).thenReturn(CountDisplayInfoByCategoryIdTestData);
-		
-		assertThat(productServiceImpl.getTotalCount(0),is(CountAllTestData));
-		assertThat(productServiceImpl.getTotalCount(1),is(CountDisplayInfoByCategoryIdTestData));
-	}
-	
+//	@Test
+//	public void testGetTotalCount() {
+//		int CountAllTestData = 1;
+//		int CountDisplayInfoByCategoryIdTestData = 2;
+//		
+//		when(productMapper.selectCountDisplayInfo(0)).thenReturn(CountAllTestData);
+//		when(productMapper.selectCountDisplayInfo(1)).thenReturn(CountDisplayInfoByCategoryIdTestData);
+//		
+//		assertThat(productServiceImpl.getTotalCount(0),is(CountAllTestData));
+//		assertThat(productServiceImpl.getTotalCount(1),is(CountDisplayInfoByCategoryIdTestData));
+//	}
+//	
 }

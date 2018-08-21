@@ -18,24 +18,28 @@ import com.nts.pjt5_6.service.CommentService;
 @RequestMapping(path = "/api/reservationUserComments")
 public class CommentApiController {
 	
+	private static final int FIRST_IMG = 0;
 	private String saveFileName;
 	
 	@Autowired
 	private CommentService commentService;
  	@PostMapping
 	public Comments addReservationInfo(@RequestBody Comments userComment) {
- 		System.out.println("들어온 데이터"+userComment);
-		userComment.getUserCommentImages().get(0).setSaveFileName(saveFileName);
+ 		
+ 		if(userComment.getUserCommentImages() != null) {
+ 			userComment.getUserCommentImages().get(FIRST_IMG).setSaveFileName(saveFileName);
+ 		}
 		
 		commentService.insertReservComment(userComment);
 		Comments tt = new Comments();
 		return tt;
 	}
+ 	
  	@PostMapping("/image")
 	public void imageUpload(@RequestParam("file") MultipartFile file) {
- 		System.out.println("파일 이름 : " + file.getOriginalFilename());
-		System.out.println("파일 크기 : " + file.getSize());
- 		try (FileOutputStream fos = new FileOutputStream("c:/tmp/" + file.getOriginalFilename());
+		saveFileName = "img/" + file.getOriginalFilename();
+
+		try (FileOutputStream fos = new FileOutputStream("c:/tmp/" + saveFileName);
 			 InputStream is = file.getInputStream();) {
 			int readCount = 0;
 			byte[] buffer = new byte[1024];
@@ -46,8 +50,5 @@ public class CommentApiController {
 			throw new RuntimeException("file Save Error");
 		}
 		
-		saveFileName = file.getOriginalFilename();
-		System.out.println("saveFileName=="+saveFileName);
-		System.out.println(file);
 	}
 }

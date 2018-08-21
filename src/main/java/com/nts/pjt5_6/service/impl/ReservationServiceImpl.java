@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.nts.pjt5_6.dao.ReservationMapper;
+import com.nts.pjt5_6.dao.ReservationInfoPriceMapper;
+import com.nts.pjt5_6.dao.ReservationInfoMapper;
 import com.nts.pjt5_6.dto.ReservationInfo;
 import com.nts.pjt5_6.dto.ReservationInfoByEmail;
 import com.nts.pjt5_6.dto.ReservationPrices;
@@ -17,7 +18,10 @@ import com.nts.pjt5_6.service.ReservationService;
 public class ReservationServiceImpl implements ReservationService{
 	
 	@Autowired
-	private ReservationMapper reservationMapper;
+	private ReservationInfoMapper reservationMapper;
+	
+	@Autowired
+	private ReservationInfoPriceMapper reservInfoPriceMapper;
 	
 	@Override
 	@Transactional(readOnly=false)
@@ -39,9 +43,9 @@ public class ReservationServiceImpl implements ReservationService{
 		}
 		
 		
-		reservationMapper.insertReservationInfoPrice(reservationPrices);
+		reservInfoPriceMapper.insertReservationInfoPrice(reservationPrices);
 		ReservationInfo returnReservInfo = reservationMapper.selectReservationInfo(reservInfoData.getId());
-		returnReservInfo.setPrices(reservationMapper.selectReservationPrices(reservInfoData.getId()));
+		returnReservInfo.setPrices(reservInfoPriceMapper.selectReservationPrices(reservInfoData.getId()));
 		
 		
 		return returnReservInfo;

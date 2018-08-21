@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.nts.pjt5_6.common.LogInterceptor;
 import com.nts.pjt5_6.common.LoginInterceptor;
 
 /**
@@ -68,5 +69,15 @@ public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter {
 	public void addInterceptors(InterceptorRegistry registry) {
     		registry.addInterceptor(new LoginInterceptor())
     				.addPathPatterns("/bookingLogin");
+    		
+    		registry.addInterceptor(new LogInterceptor())
+    				.addPathPatterns("/categories")
+    				.addPathPatterns("/api/reservationUserComments")
+    				.addPathPatterns("/products")
+    				.addPathPatterns("/api/productImages")
+    				.addPathPatterns("/promotions")
+    				.addPathPatterns("/api/reservationInfos");
 	}
+	
+	
 }

@@ -47,6 +47,7 @@ public class DBConfig {
 		config.setMapUnderscoreToCamelCase(true);
 		sessionFactory.setConfiguration(config);
 		sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("/mapper/*.xml"));
+		sessionFactory.setTypeAliasesPackage("com.nts.pjt5_6.dto");
 		return sessionFactory;
 	}
 

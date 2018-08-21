@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.nts.pjt5_6.dao.ImageMapper;
+import com.nts.pjt5_6.dao.ProductImageMapper;
 import com.nts.pjt5_6.dto.ProductImages;
 import com.nts.pjt5_6.service.ImageService;
 
@@ -13,7 +13,7 @@ import com.nts.pjt5_6.service.ImageService;
 public class ImageServiceImpl implements ImageService{
 	
 	@Autowired
-	ImageMapper imageMapper;
+	ProductImageMapper imageMapper;
 	
 	@Override
 	public List<ProductImages> getProductImagesInfoByIdAndType(int productId, String type) {

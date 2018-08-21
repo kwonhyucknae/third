@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
  * @author "Hyeoknae.Kwon"
  *
  */
+
 @Component
 @Aspect
 public class ExceptionAop {
@@ -21,10 +22,10 @@ public class ExceptionAop {
 
 	
 	@AfterThrowing(pointcut = "pointcutMethod()", throwing = "exceptObj")
-	public void exception(JoinPoint joinpoint, Exception exceptObj) {
-		String method = joinpoint.getSignature().getName();
+	public void exception(JoinPoint jp, Exception exceptObj) {
+		String method = jp.getSignature().getName();
 		System.out.println(method + "() 메소드 수행 중 예외 발생!");
-
+		
 		if (exceptObj instanceof RuntimeException) {
 			System.out.println("예외 발생");
 			exceptObj.getMessage();

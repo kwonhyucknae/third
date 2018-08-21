@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nts.pjt5_6.dao.ProductImageMapper">
+    
+    <select id="selectProductImagesInfoByIdAndType" parameterType="map" resultType="ProductImages">
+        SELECT product.id AS product_id
+			,prodImage.id AS product_image_id
+			,type
+            ,file_id,file_name
+            ,save_file_name
+            ,content_type
+            ,delete_flag
+            ,flInfo.create_date
+            ,flInfo.modify_date
+        FROM product
+        INNER JOIN product_image AS prodImage
+				ON product.id = prodImage.product_id
+        INNER JOIN file_info AS flInfo
+				ON prodImage.file_id = flInfo.id 
+		<where>
+        	product.id = #{productId}
+        <if test = "type != 'all'">
+        	AND type = #{type} 
+        </if>
+        </where>
+    </select>
+    
+    <select id="selectProductImagesInfoByProductImageId" parameterType="int" resultType="ProductImages">
+        SELECT product.id AS product_id
+			,prodImage.id AS product_image_id
+            ,type
+            ,file_id
+            ,file_name
+            ,save_file_name
+            ,content_type
+            ,delete_flag
+            ,flInfo.create_date
+            ,flInfo.modify_date
+        FROM product
+        INNER JOIN product_image AS prodImage
+				ON  product.id = prodImage.product_id 
+		INNER JOIN file_info AS flInfo
+				ON prodImage.file_id = flInfo.id 
+        WHERE prodImage.id = #{prodImageId}
+    </select>
+    
+    <select id="selectProductImagesInfoByDispId" parameterType="int" resultType="ProductImages">
+    	SELECT product.id AS product_id
+			,prodImage.id AS product_image_id
+			,type
+            ,file_id
+            ,file_name
+            ,save_file_name
+            ,content_type
+            ,delete_flag
+            ,flInfo.create_date
+            ,flInfo.modify_date
+    	FROM product
+        INNER JOIN product_image AS prodImage
+				ON product.id = prodImage.product_id
+		INNER JOIN file_info AS flInfo
+				ON prodImage.file_id = flInfo.id 
+		INNER JOIN display_info AS dpInfo
+				ON product.id = dpInfo.product_id 
+    	WHERE type != 'th' AND dpInfo.id = #{dpInfoId}
+    	ORDER BY type <![CDATA[ <> ]]> 'ma'
+    	LIMIT 2
+    </select>
+</mapper>

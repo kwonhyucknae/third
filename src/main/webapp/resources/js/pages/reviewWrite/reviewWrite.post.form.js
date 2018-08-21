@@ -9,8 +9,9 @@ class reviewPostForm {
 		params.reservationInfoId = document.querySelector("div.ct").getAttribute("data-reservId");
 		params.score = document.querySelector("div.rating").getAttribute("data-value");
 		params.comment = document.querySelector("textarea.review_textarea").value;
-		console.log(reviewEven.imageFile);
-		params.userCommentImages=this.imageFormatter();
+		if(reviewEven.imageFile !== undefined){
+			params.userCommentImages=this.imageFormatter();
+		}
 		return params;
 	}
 	

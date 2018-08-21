@@ -170,7 +170,7 @@
 									<li class="item">
 									<span class="item_tit">일정</span>
 									<em class="item_dsc">
-										2000.0.00.(월)2000.0.00.(일)
+										{{openingHours}}
 									</em>
 									</li>
 									<li class="item">
@@ -182,7 +182,7 @@
 									<li class="item">
 										<span class="item_tit">장소</span>
 										<em class="item_dsc">
-											내역이 없습니다.
+											{{placeName}}
 										</em>
 									</li>
 									<li class="item">
@@ -230,7 +230,7 @@
 									<li class="item">
 										<span class="item_tit">일정</span>
 										<em class="item_dsc">
-												2000.0.00.(월)2000.0.00.(일)
+												{{openingHours}}
 										</em>
 									</li>
 									<li class="item">
@@ -242,7 +242,7 @@
 									<li class="item">
 										<span class="item_tit">장소</span>
 										<em class="item_dsc">
-											내역이 없습니다.
+											{{placeName}}
 										</em>
 									</li>
 									<li class="item">
@@ -260,7 +260,7 @@
 									</em>
 								</div>
 								<div class="booking_cancel">
-									<a href="./reviewWrite?productId={{productId}}&reservInfoId={{id}}"><button class="btn"><span>예매자 리뷰 남기기</span></button></a>
+									<a href="./reviewWrite?dispInfoId={{displayInfoId}}&reservInfoId={{id}}"><button class="btn"><span>예매자 리뷰 남기기</span></button></a>
 								</div>
 							</div>
 						</div>
@@ -287,7 +287,7 @@
 								<li class="item">
 									<span class="item_tit">일정</span>
 									<em class="item_dsc">
-										2000.0.00.(월)2000.0.00.(일)
+										{{openingHours}}
 									</em>
 									</li>
 									<li class="item">
@@ -299,7 +299,7 @@
 									<li class="item">
 										<span class="item_tit">장소</span>
 										<em class="item_dsc">
-											내역이 없습니다.
+											{{placeName}}
 										</em>
 									</li>
 									<li class="item">

@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.nts.pjt5_6.dao.ImageMapper;
+import com.nts.pjt5_6.dao.ProductImageMapper;
 import com.nts.pjt5_6.dto.ProductImages;
 import com.nts.pjt5_6.service.impl.ImageServiceImpl;
 
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 public class ImageServiceTest {
 
 	@Mock
-	ImageMapper imageMapper;
+	ProductImageMapper imageMapper;
 	
 	@InjectMocks
 	ImageServiceImpl imageServiceImpl;

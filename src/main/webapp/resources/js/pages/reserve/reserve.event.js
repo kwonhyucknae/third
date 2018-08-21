@@ -93,9 +93,11 @@ class reserveEvent {
 		let reservationBtn = document.querySelector(".bk_btn");
 		reservationBtn.addEventListener("click",function(evt){
 			let params = postFormat.postFormatter();
+			console.log(params);
 			ajaxHandler.sendAsPost("/api/reservationInfos",params)
 			.then(returnData => {
 				console.log(returnData);
+				window.location.href = "/main";
 			})
 		})
 	}

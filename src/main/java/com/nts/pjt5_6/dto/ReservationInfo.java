@@ -5,6 +5,7 @@ import java.util.List;
 public class ReservationInfo {
 	private int id;
 	private int productId;
+	private int displayInfoId;
 	private String reservationName;
 	private String reservationTel;
 	private String reservationEmail;
@@ -24,6 +25,12 @@ public class ReservationInfo {
 	}
 	public void setProductId(int productId) {
 		this.productId = productId;
+	}
+	public int getDisplayInfoId() {
+		return displayInfoId;
+	}
+	public void setDisplayInfoId(int displayInfoId) {
+		this.displayInfoId = displayInfoId;
 	}
 	public String getReservationName() {
 		return reservationName;
@@ -70,10 +77,10 @@ public class ReservationInfo {
 	
 	@Override
 	public String toString() {
-		return "ReservationInfo [id=" + id + ", productId=" + productId + ", reservationName=" + reservationName
-				+ ", reservationTel=" + reservationTel + ", reservationEmail=" + reservationEmail + ", reservationDate="
-				+ reservationDate + ", createDate=" + createDate + ", modifyDate=" + modifyDate + ", prices=" + prices
-				+ "]";
+		return "ReservationInfo [id=" + id + ", productId=" + productId + ", displayInfoId=" + displayInfoId
+				+ ", reservationName=" + reservationName + ", reservationTel=" + reservationTel + ", reservationEmail="
+				+ reservationEmail + ", reservationDate=" + reservationDate + ", createDate=" + createDate
+				+ ", modifyDate=" + modifyDate + ", prices=" + prices + "]";
 	}
 	
 	

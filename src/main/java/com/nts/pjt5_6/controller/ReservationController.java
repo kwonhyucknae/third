@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nts.pjt5_6.dto.Product;
-import com.nts.pjt5_6.service.ProductService;
+import com.nts.pjt5_6.service.DisplayInfoService;
 
 
 @Controller
 public class ReservationController {
 	
 	@Autowired
-	ProductService productService;
+	DisplayInfoService displayService;
 	
 	@GetMapping(path = "/main")
 	public String mainConvert() {
@@ -45,11 +45,12 @@ public class ReservationController {
 	}
 	
 	@GetMapping(path = "/reviewWrite")
-	public String reviewWriteFormConvert(@RequestParam(name = "productId" , required = true) int productId,
+	public String reviewWriteFormConvert(@RequestParam(name = "dispInfoId" , required = true) int dispInfoId,
 			@RequestParam(name = "reservInfoId" , required = true) int reservInfoId, ModelMap model) {
-		Product productById = productService.getProductById(productId);
-		model.addAttribute("productId",productId);
+		Product productById = displayService.getProductById(dispInfoId);
+		model.addAttribute("displayInfoId",dispInfoId);
 		model.addAttribute("reservInfoId",reservInfoId);
+		model.addAttribute("productId",productById.getId());
 		model.addAttribute("description",productById.getDescription());
 		return "reviewWrite";
 	}

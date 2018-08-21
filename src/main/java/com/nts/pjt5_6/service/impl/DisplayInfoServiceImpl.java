@@ -5,7 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nts.pjt5_6.dao.ReservationUserCommentMapper;
+import com.nts.pjt5_6.dao.DisplayInfoImageMapper;
 import com.nts.pjt5_6.dao.DisplayInfoMapper;
+import com.nts.pjt5_6.dao.ProductImageMapper;
+import com.nts.pjt5_6.dao.ProductMapper;
+import com.nts.pjt5_6.dao.ProductPriceMapper;
+import com.nts.pjt5_6.dao.ReservationUserCommentImageMapper;
 import com.nts.pjt5_6.dto.Comments;
 import com.nts.pjt5_6.dto.DisplayInfoImages;
 import com.nts.pjt5_6.dto.Product;
@@ -17,31 +23,43 @@ import com.nts.pjt5_6.service.DisplayInfoService;
 @Service
 public class DisplayInfoServiceImpl implements DisplayInfoService{
 	@Autowired
+	ProductMapper prodMapper;
+	@Autowired
+	ProductImageMapper prodImgMapper;
+	@Autowired
 	DisplayInfoMapper displayInfoMapper;
+	@Autowired
+	DisplayInfoImageMapper dispInfoImgMapper;
+	@Autowired
+	ReservationUserCommentImageMapper reservCommentImg;
+	@Autowired
+	ReservationUserCommentMapper commentMapper;
+	@Autowired
+	ProductPriceMapper prodPriceMapper;
 	
 	@Override
 	public Product getProductById(int dpInfoId) {
-		return displayInfoMapper.selectProductById(dpInfoId);
+		return prodMapper.selectProductByDisplayId(dpInfoId);
 	}
 	
 	@Override
 	public List<ProductImages> getProductImagesInfo(int dpInfoId) {
-		return displayInfoMapper.selectProductImagesInfo(dpInfoId);
+		return prodImgMapper.selectProductImagesInfoByDispId(dpInfoId);
 	}
 	
 	@Override
 	public List<DisplayInfoImages> getDisplayImagesInfo(int dpInfoId) {
-		return displayInfoMapper.selectDisplayImagesInfo(dpInfoId);
+		return dispInfoImgMapper.selectDisplayImagesInfo(dpInfoId);
 	}
 
 	@Override
 	public List<ReservationUserCommentImages> getCommentImagesByCommentID(int commentID) {
-		return displayInfoMapper.selectCommentImagesByCommentId(commentID);
+		return reservCommentImg.selectCommentImagesByCommentId(commentID);
 	}
 
 	@Override
 	public List<Comments> getComments(int dpInfoId) {
-		List<Comments> temporaryList = displayInfoMapper.selectCommentsByDisplayId(dpInfoId);
+		List<Comments> temporaryList = commentMapper.selectCommentsByDisplayId(dpInfoId);
 		for (int i = 0; i < temporaryList.size(); i++) {
 			List<ReservationUserCommentImages> commentImagesByCommentId = getCommentImagesByCommentID(
 					temporaryList.get(i).getId());
@@ -57,6 +75,6 @@ public class DisplayInfoServiceImpl implements DisplayInfoService{
 
 	@Override
 	public List<ProductPrices> getProductPrices(int dpInfoId) {
-		return displayInfoMapper.selectProductPrices(dpInfoId);
+		return prodPriceMapper.selectProductPrices(dpInfoId);
 	}
 }

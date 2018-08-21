@@ -20,7 +20,7 @@
 				  <a href="#" class="btn_my"> <span title="예약확인">예약확인</span> </a>
 			</header>
 		</div>
-		<div class="ct" data-productId="${productId}" data-reservId="${reservInfoId}">
+		<div class="ct" data-productId="${productId}" data-displayInfoId="${displayInfoId}" data-reservId="${reservInfoId}">
 			<div class="ct_wrap">
 				<div class="top_title review_header">
 					<a href="./myreservation" class="btn_back" title="이전 화면으로 이동"> <i class="fn fn-backward1"></i> </a>

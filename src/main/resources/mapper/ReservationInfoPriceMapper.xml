@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nts.pjt5_6.dao.ReservationInfoPriceMapper">
+	<insert id ="insertReservationInfoPrice" parameterType="map">
+		INSERT INTO reservation_info_price
+			(
+			 reservation_info_id
+			,product_price_id
+			,count
+			) 
+		VALUES
+		<foreach collection="list" item="singlePrice" separator=", ">
+			(
+			#{singlePrice.reservationInfoId}
+			,#{singlePrice.productPriceId}
+			,#{singlePrice.count}
+			)
+		</foreach>
+	</insert>
+	
+	<select id="selectReservationPrices" parameterType="int" resultType="ReservationPrices">
+ 		SELECT reservPrice.id
+			,reservPrice.reservation_info_id
+			,reservPrice.product_price_id
+			,reservPrice.count
+    	FROM reservation_info_price AS reservPrice
+    	WHERE reservation_info_id = #{id}
+    </select>
+    
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.nts.pjt5_6.dao.ReservationInfoMapper">
+	
+	<insert id ="insertReservationInfo" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO reservation_info
+			(
+			 product_id
+			,display_info_id
+			,reservation_name
+			,reservation_tel
+			,reservation_email
+			,reservation_date
+			,create_date
+			,modify_date
+			) 
+		VALUES
+			(
+			#{productId}
+			,#{displayInfoId}
+			,#{reservationName}
+			,#{reservationTel}
+			,#{reservationEmail}
+			,#{reservationDate}
+			,NOW()
+			,NOW()
+			)
+	</insert>
+	
+	<select id="selectReservationInfo" parameterType="int" resultType="ReservationInfo">
+    	SELECT reservInfo.id
+			,reservInfo.product_id
+			,reservInfo.display_info_id
+    		,reservInfo.reservation_name
+    		,reservInfo.reservation_tel
+		    ,reservInfo.reservation_email
+		    ,reservInfo.reservation_date
+		    ,reservInfo.create_date
+		    ,reservInfo.modify_date
+		FROM reservation_info AS reservInfo
+		WHERE reservInfo.id = #{id};
+	</select>
+    
+	<select id="selectReservationInfoByEmail" parameterType="String" resultType="ReservationInfoByEmail">
+		SELECT reservInfo.id
+			,reservInfo.product_id
+			,reservInfo.display_info_id
+            ,description AS product_description
+            ,opening_hours
+            ,place_name
+            ,reservation_name
+            ,reservation_tel
+            ,reservation_email
+            ,sum_price
+            ,reservInfo.cancel_flag
+            ,reservation_date
+            ,reservInfo.create_date
+            ,reservInfo.modify_date
+       FROM reservation_info AS reservInfo
+       INNER JOIN product AS prod
+			   ON reservInfo.product_id = prod.id
+	   INNER JOIN display_info AS dispInfo
+			   ON dispInfo.product_id = prod.id
+	   INNER JOIN 
+            (
+             SELECT reservInfo.id
+					,sum(price * count) AS sum_price
+			 FROM reservation_info AS reservInfo
+			 INNER JOIN reservation_info_price AS reservInfoPrice
+					 ON reservInfo.id = reservInfoPrice.reservation_info_id
+			 INNER JOIN product_price
+					 ON reservInfoPrice.product_price_id = product_price.id
+             <include refid="selectEmail"/>
+             GROUP BY reservInfo.id
+            ) AS Counts
+			  ON Counts.id = reservInfo.id
+	  	<include refid="selectEmail"/>
+    </select> 
+    
+   	<sql id="selectEmail">
+		<where>
+			reservInfo.reservation_email = #{email}
+		</where>
+	</sql>
+    
+    <update id="updateReservationCancel" parameterType="int">
+    	UPDATE reservation_info
+    	SET cancel_flag = 1
+    	WHERE id = #{reservInfoId}
+    </update>
+</mapper>

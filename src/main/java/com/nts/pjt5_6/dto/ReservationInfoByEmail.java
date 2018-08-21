@@ -5,8 +5,10 @@ import java.util.Date;
 public class ReservationInfoByEmail {
 	private int id;
 	private int productId;
+	private int displayInfoId;
 	private String productDescription;
-	private String productContent;
+	private String openingHours;
+	private String placeName;
 	private String reservationName;
 	private String reservationTel;
 	private String reservationEmail;
@@ -28,17 +30,30 @@ public class ReservationInfoByEmail {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
+	public int getDisplayInfoId() {
+		return displayInfoId;
+	}
+	public void setDisplayInfoId(int displayInfoId) {
+		this.displayInfoId = displayInfoId;
+	}
 	public String getProductDescription() {
 		return productDescription;
 	}
 	public void setProductDescription(String productDescription) {
 		this.productDescription = productDescription;
 	}
-	public String getProductContent() {
-		return productContent;
+	
+	public String getOpeningHours() {
+		return openingHours;
 	}
-	public void setProductContent(String productContent) {
-		this.productContent = productContent;
+	public void setOpeningHours(String openingHours) {
+		this.openingHours = openingHours;
+	}
+	public String getPlaceName() {
+		return placeName;
+	}
+	public void setPlaceName(String placeName) {
+		this.placeName = placeName;
 	}
 	public String getReservationName() {
 		return reservationName;
@@ -91,13 +106,15 @@ public class ReservationInfoByEmail {
 	
 	@Override
 	public String toString() {
-		return "ReservationInfoByEmail [id=" + id + ", productId=" + productId + ", productDescription="
-				+ productDescription + ", productContent=" + productContent + ", reservationName=" + reservationName
-				+ ", reservationTel=" + reservationTel + ", reservationEmail=" + reservationEmail + ", sumPrice="
-				+ sumPrice + ", reservationDate=" + reservationDate + ", createDate=" + createDate + ", modifyDate="
-				+ modifyDate + "]";
+		return "ReservationInfoByEmail [id=" + id + ", productId=" + productId + ", displayInfoId=" + displayInfoId
+				+ ", productDescription=" + productDescription + ", openingHours=" + openingHours + ", placeName="
+				+ placeName + ", reservationName=" + reservationName + ", reservationTel=" + reservationTel
+				+ ", reservationEmail=" + reservationEmail + ", sumPrice=" + sumPrice + ", cancelFlag=" + cancelFlag
+				+ ", reservationDate=" + reservationDate + ", createDate=" + createDate + ", modifyDate=" + modifyDate
+				+ "]";
 	}
 	
+
 	
 	
 }

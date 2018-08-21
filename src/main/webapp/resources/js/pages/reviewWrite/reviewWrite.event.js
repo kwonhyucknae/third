@@ -1,6 +1,7 @@
 class revWriteEvent {
 	constructor(){
 		this.imageFile;
+		this.displayInfoId = document.querySelector("div.ct").getAttribute("data-displayInfoId");
 	}
 	
 	addEventReviewContent() {
@@ -51,14 +52,19 @@ class revWriteEvent {
 	
 	addEventSendBtn(){
 		let btnSection = document.querySelector("div.box_bk_btn");
+		
 		btnSection.addEventListener("click",(evt) => {
 			let uploadImage = this.imageFile;
 			let params = postForm.postFormatter();
-			ajaxHandler.sendImageFileAsPost("/api/reservationUserComments/image",uploadImage)
+			if(uploadImage !== undefined){
+				ajaxHandler.sendImageFileAsPost("/api/reservationUserComments/image",uploadImage)
+			}
 			
 			ajaxHandler.sendAsPost("/api/reservationUserComments",params)
 			.then(returnData => {
 				console.log(returnData);
+				window.location.href = "/detail?id=" + this.displayInfoId;
+				
 			})			
 		})
 	}
