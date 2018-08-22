@@ -4,11 +4,12 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
  * @description service 패키지에서 발생하는 RuntimeException 및 모든 오류에 대한 예외처리를 해주는 Aop 클래스입니다.
- * @description PJT.6 이후 개선할 사항 -> sysout 을 로그로 변경 
  * @author "Hyeoknae.Kwon"
  *
  */
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class ExceptionAop {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Pointcut("within(com.nts.pjt5_6.service.impl.*)")
 	private void pointcutMethod() {
 	}
@@ -24,13 +27,24 @@ public class ExceptionAop {
 	@AfterThrowing(pointcut = "pointcutMethod()", throwing = "exceptObj")
 	public void exception(JoinPoint jp, Exception exceptObj) {
 		String method = jp.getSignature().getName();
-		System.out.println(method + "() 메소드 수행 중 예외 발생!");
+		logger.error("{} 메소드 수행중 예외 발생",method);
 		
 		if (exceptObj instanceof RuntimeException) {
-			System.out.println("예외 발생");
-			exceptObj.getMessage();
+			logger.error(
+					"Runtime 예외 발생 에러 메시지 : {} \n 에러 클래스 : {} \n {}"
+					,exceptObj.getMessage()
+					,exceptObj.getClass()
+					,exceptObj.getCause()
+					);
 		} else {
-			System.out.println("기타 예외 발생");
+			logger.error(
+					"기타 예외 발생\n"
+					+ "에러 메시지 : {} \n"
+					+ "에러 클래스 : {} \n"
+					+ "{}"
+					,exceptObj.getMessage()
+					,exceptObj.getClass()
+					,exceptObj.getCause());
 		}
 	}
 

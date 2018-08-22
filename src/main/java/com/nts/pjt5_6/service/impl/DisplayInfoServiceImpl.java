@@ -1,5 +1,6 @@
 package com.nts.pjt5_6.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import com.nts.pjt5_6.dto.ReservationUserCommentImages;
 import com.nts.pjt5_6.service.DisplayInfoService;
 
 @Service
-public class DisplayInfoServiceImpl implements DisplayInfoService{
+public class DisplayInfoServiceImpl implements DisplayInfoService {
 	@Autowired
 	ProductMapper prodMapper;
 	@Autowired
@@ -36,17 +37,17 @@ public class DisplayInfoServiceImpl implements DisplayInfoService{
 	ReservationUserCommentMapper commentMapper;
 	@Autowired
 	ProductPriceMapper prodPriceMapper;
-	
+
 	@Override
 	public Product getProductById(int dpInfoId) {
 		return prodMapper.selectProductByDisplayId(dpInfoId);
 	}
-	
+
 	@Override
 	public List<ProductImages> getProductImagesInfo(int dpInfoId) {
 		return prodImgMapper.selectProductImagesInfoByDispId(dpInfoId);
 	}
-	
+
 	@Override
 	public List<DisplayInfoImages> getDisplayImagesInfo(int dpInfoId) {
 		return dispInfoImgMapper.selectDisplayImagesInfo(dpInfoId);
@@ -60,10 +61,11 @@ public class DisplayInfoServiceImpl implements DisplayInfoService{
 	@Override
 	public List<Comments> getComments(int dpInfoId) {
 		List<Comments> temporaryList = commentMapper.selectCommentsByDisplayId(dpInfoId);
-		for (int i = 0; i < temporaryList.size(); i++) {
-			List<ReservationUserCommentImages> commentImagesByCommentId = getCommentImagesByCommentID(
-					temporaryList.get(i).getId());
-			temporaryList.get(i).setUserCommentImages(commentImagesByCommentId);
+		List<ReservationUserCommentImages> commentImagesByCommentId = new ArrayList<>();
+		
+		for (Comments comment : temporaryList) {
+			commentImagesByCommentId = getCommentImagesByCommentID(comment.getId());
+			comment.setUserCommentImages(commentImagesByCommentId);
 		}
 		return temporaryList;
 	}

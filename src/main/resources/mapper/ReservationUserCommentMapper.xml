@@ -22,8 +22,8 @@
 			)
 	</insert>
 	
-	<select id="selectCommentsByDisplayId" parameterType="int" resultType="Comments">
-    	SELECT reservUserComment.id
+	<sql id="selectComment">
+		SELECT reservUserComment.id
 			,product.id AS product_id
             ,reservation_info_id
             ,score
@@ -39,6 +39,15 @@
 				ON diInfo.product_id = product.id
 		INNER JOIN reservation_info AS reservInfo
 				ON reservUserComment.reservation_info_id = reservInfo.id 
+	</sql>
+	
+	<select id="selectCommentsByDisplayId" parameterType="int" resultType="Comments">
+    	<include refid="selectComment"/>
     	WHERE diInfo.id = #{dpInfoId}
 	</select>
+	
+	<select id="selectCommentsByCommentId" parameterType="int" resultType="Comments">
+    	<include refid="selectComment"/>
+    	WHERE reservUserComment.id = #{id}
+    </select>
 </mapper> 

@@ -9,4 +9,5 @@ public interface ReservationService {
 	public ReservationInfo insertReservationInfo(ReservationInfo reservInfoData);
 	public List<ReservationInfoByEmail> selectReservationInfoByEmail(String emailAddr);
 	public int updateReservationCancel(int reservInfoId);
+	public String getLocalDate();
 }

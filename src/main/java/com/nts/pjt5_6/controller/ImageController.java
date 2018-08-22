@@ -41,13 +41,13 @@ public class ImageController {
 	 * @throws IOException productId에 해당되는 type 값이 없는 경우 예외 발생
 	 */
 	@GetMapping(value = "/productImages/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
-	public @ResponseBody byte[] getProductImageByIdAndType(@PathVariable(name = "id") int productId,
+	public byte[] getProductImageByIdAndType(@PathVariable(name = "id") int productId,
 			@RequestParam(name = "type", required = false, defaultValue = "ma") String type, HttpServletRequest request)
 			throws IOException {
 		
 		List<ProductImages> productImageInfo = imageService.getProductImagesInfoByIdAndType(productId, type);
 		String imgFileName = productImageInfo.get(FIRST_IMG).getSaveFileName();
-		InputStream inputStream = new FileInputStream(request.getServletContext().getRealPath(imgFileName));
+		InputStream inputStream = new FileInputStream(FILE_LOCATION + imgFileName);
 		
 		return IOUtils.toByteArray(inputStream);
 	}
@@ -58,12 +58,12 @@ public class ImageController {
 	 * @throws IOException productId에 해당되는 productImageId가 없을 경우 예외 발생
 	 */
 	@GetMapping(value = "/productImages/{productId}/{productImageId}", produces = MediaType.IMAGE_JPEG_VALUE)
-	public @ResponseBody byte[] getProductImageById(@PathVariable(name = "productId") int productId,
+	public byte[] getProductImageById(@PathVariable(name = "productId") int productId,
 			@PathVariable(name = "productImageId") int productImageId , HttpServletRequest request) throws IOException{
+		
 		ProductImages productImageInfo = imageService.getProductImagesInfoByProductImageId(productImageId);
 		String imgFileName = productImageInfo.getSaveFileName();
-		InputStream inputStream = new FileInputStream(request.getServletContext().getRealPath(imgFileName));
-		
+		InputStream inputStream = new FileInputStream(FILE_LOCATION + imgFileName);
 		return IOUtils.toByteArray(inputStream); 
 	}
 	
@@ -75,10 +75,10 @@ public class ImageController {
 	@GetMapping(value = "/displayImages/{displayId}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public @ResponseBody byte[] getMapImage(@PathVariable(name = "displayId") int dpInfoId,
 			HttpServletRequest request) throws IOException{
+		
 		List<DisplayInfoImages> displayImagesInfo = displayInfoService.getDisplayImagesInfo(dpInfoId);
 		String imgFileName = displayImagesInfo.get(FIRST_IMG).getSaveFileName();
-		InputStream inputStream = new FileInputStream(request.getServletContext().getRealPath(imgFileName));
-		
+		InputStream inputStream = new FileInputStream(FILE_LOCATION + imgFileName);
 		return IOUtils.toByteArray(inputStream); 
 	}
 	
@@ -90,12 +90,10 @@ public class ImageController {
 	@GetMapping(value = "/commentImage/{commentId}", produces = MediaType.IMAGE_JPEG_VALUE)
 	public @ResponseBody byte[] getCommentImage(@PathVariable(name = "commentId") int commentId,
 			HttpServletRequest request) throws IOException{
+		
 		List<ReservationUserCommentImages> displayImagesInfo = displayInfoService.getCommentImagesByCommentID(commentId);
-		System.out.println("commentId===" + commentId);
-		System.out.println(displayImagesInfo);
 		String imgFileName = displayImagesInfo.get(FIRST_IMG).getSaveFileName();
 		InputStream inputStream = new FileInputStream(FILE_LOCATION + imgFileName);
-//		InputStream inputStream = new FileInputStream(request.getServletContext().getRealPath(imgFileName));
 		
 		return IOUtils.toByteArray(inputStream); 
 	}

@@ -54,18 +54,13 @@ class revWriteEvent {
 		let btnSection = document.querySelector("div.box_bk_btn");
 		
 		btnSection.addEventListener("click",(evt) => {
-			let uploadImage = this.imageFile;
-			let params = postForm.postFormatter();
-			if(uploadImage !== undefined){
-				ajaxHandler.sendImageFileAsPost("/api/reservationUserComments/image",uploadImage)
-			}
-			
-			ajaxHandler.sendAsPost("/api/reservationUserComments",params)
+			let formData = postForm.postFormatter();	
+			ajaxHandler.sendAsTest("/api/reservationUserComments",formData)
 			.then(returnData => {
 				console.log(returnData);
 				window.location.href = "/detail?id=" + this.displayInfoId;
-				
-			})			
+			})
+			
 		})
 	}
 } 

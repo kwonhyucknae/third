@@ -1,7 +1,10 @@
 package com.nts.pjt5_6.service.impl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,14 +31,13 @@ public class ReservationServiceImpl implements ReservationService{
 	public ReservationInfo insertReservationInfo(ReservationInfo reservInfoData) {
 		
 		reservationMapper.insertReservationInfo(reservInfoData);
-		
 		List<ReservationPrices> reservationPrices = new ArrayList<>();
 		
-		for(int i=0;i<reservInfoData.getPrices().size();i++) {
+		for(ReservationPrices productPrice : reservInfoData.getPrices()) {
 			
 			ReservationPrices tempPrices = new ReservationPrices.Builder()
-					.setCount(reservInfoData.getPrices().get(i).getCount())
-					.setProductPriceId(reservInfoData.getPrices().get(i).getProductPriceId())
+					.setCount(productPrice.getCount())
+					.setProductPriceId(productPrice.getProductPriceId())
 					.setReservationInfoId(reservInfoData.getId())
 					.build();
 			
@@ -46,7 +48,6 @@ public class ReservationServiceImpl implements ReservationService{
 		reservInfoPriceMapper.insertReservationInfoPrice(reservationPrices);
 		ReservationInfo returnReservInfo = reservationMapper.selectReservationInfo(reservInfoData.getId());
 		returnReservInfo.setPrices(reservInfoPriceMapper.selectReservationPrices(reservInfoData.getId()));
-		
 		
 		return returnReservInfo;
 	}
@@ -60,5 +61,11 @@ public class ReservationServiceImpl implements ReservationService{
 	public int updateReservationCancel(int reservInfoId) {
 		return reservationMapper.updateReservationCancel(reservInfoId);
 	}
-
+	
+	@Override
+	public String getLocalDate() {
+		Random random = new Random();
+		String reservationDate = LocalDate.now().plusDays(random.nextInt(5)).format(DateTimeFormatter.ofPattern("yyyy.M.d"));
+		return reservationDate;
+	}
 }

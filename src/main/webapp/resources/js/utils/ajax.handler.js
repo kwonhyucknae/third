@@ -36,6 +36,19 @@ const ajaxHandler = {
 		})
 	},
 	
+	sendAsTest : function(url, params){
+		return new Promise((resolve, reject) => {
+			const xhr = new XMLHttpRequest();
+			
+			xhr.open("POST", url);
+//			xhr.setRequestHeader('Content-type','multipart/form-data; boundary=something');
+			xhr.onload = () => resolve(xhr.responseText);
+			xhr.onerror = () => reject(xhr.statusText);
+			
+			xhr.send(params);
+		})
+	},
+	
 	sendAsPut : function(url){
 		
 		return new Promise((resolve, reject) => {

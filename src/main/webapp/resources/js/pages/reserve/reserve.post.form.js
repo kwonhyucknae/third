@@ -5,7 +5,6 @@ class formPost {
 		this.reservationTel = "011";
 		this.reservationEmail = "1@c";
 		this.todayDate = new Date();
-//		this.prices = [{productPriceId : 1,count : 1}];
 		this.inputPrice = document.getElementsByName("price_cnt");
 	}
 	
@@ -16,7 +15,7 @@ class formPost {
 		params.reservationName = document.getElementById("name").value;
 		params.reservationTel = document.querySelector("[name='tel']").value;
 		params.reservationEmail = document.querySelector("[name='email']").value;
-		params.reservationDate = this.randomDate(this.todayDate.getTime(),this.todayDate.getTime() + (1000 * 60 * 60 * 24 * 5));
+		params.reservationDate = this.getReservationDate();
 		params.prices = this.getPrices();
 		console.log("params",params);
 		return params;
@@ -34,11 +33,13 @@ class formPost {
 		return prices;
 	}
 	
-	randomDate(startDate,endDate){
-//		let endDate = new Date();
-//		endDate.setDate(endDate.getDate() + 5);
+	getReservationDate(){
+		const YEAR = 0;
+		const MONTH =1;
+		const DAY = 2;
+		let dateFormat = document.querySelector("p.inline_txt").innerText;
+		let localDate = dateFormat.substring(0,dateFormat.indexOf(",",0)).split(".");
 		
-		return new Date(startDate + Math.random() * (endDate - startDate)).toJSON().slice(0, 10);
-		//calender <---
+		return [localDate[YEAR],localDate[MONTH],localDate[DAY]].join('-');
 	}
 }

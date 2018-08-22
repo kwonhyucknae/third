@@ -4,26 +4,16 @@ class reviewPostForm {
 	}
 	
 	postFormatter(){
-		let params = {};
-		params.productId = document.querySelector("div.ct").getAttribute("data-productId");
-		params.reservationInfoId = document.querySelector("div.ct").getAttribute("data-reservId");
-		params.score = document.querySelector("div.rating").getAttribute("data-value");
-		params.comment = document.querySelector("textarea.review_textarea").value;
+		let formData = new FormData();
+		formData.append("productId",document.querySelector("div.ct").getAttribute("data-productId"));
+		formData.append("reservationInfoId",document.querySelector("div.ct").getAttribute("data-reservId"));
+		formData.append("score",document.querySelector("div.rating").getAttribute("data-value"));
+		formData.append("comment",document.querySelector("textarea.review_textarea").value);
+		
 		if(reviewEven.imageFile !== undefined){
-			params.userCommentImages=this.imageFormatter();
+			formData.append("commentImageFile",reviewEven.imageFile);
 		}
-		return params;
-	}
-	
-	imageFormatter(){
-		let userCommentImage = []
-		let params = {};
-		params.reservationInfoId = document.querySelector("div.ct").getAttribute("data-reservId");
-		params.fileName = reviewEven.imageFile.name;
-		params.modifyDate = reviewEven.imageFile.lastModifiedDate;
-		params.contentType = reviewEven.imageFile.type;
-		console.log(params);
-		userCommentImage.push(params);
-		return userCommentImage;
+		
+		return formData;
 	}
 } 

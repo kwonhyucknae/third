@@ -15,7 +15,6 @@ public class LoginController {
 
 	@GetMapping
 	public String bookingLoginConvert() {
-		
 		return "bookinglogin";
 	}
 	

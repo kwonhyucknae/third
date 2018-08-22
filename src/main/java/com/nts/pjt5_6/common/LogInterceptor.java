@@ -17,11 +17,16 @@ public class LogInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd-hh:mm:ss");
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
 		
-		logger.info("요청된 URL : {}", request.getRequestURI());
-		logger.info("현재 시간 : {}", dateFormat.format(calendar.getTime()));
-		logger.info("Client IP : {}",request.getRemoteAddr());
+		logger.info(
+				"요청된 URL : {} \n"
+				+ "현재시간 : {} \n"
+				+ "Client IP : {} \n"
+				,request.getRequestURI()
+				,dateFormat.format(calendar.getTime())
+				,request.getRemoteAddr()
+				);
 		logger.debug("{} 를 호출했습니다.", handler.toString());
 		return true;
 	}

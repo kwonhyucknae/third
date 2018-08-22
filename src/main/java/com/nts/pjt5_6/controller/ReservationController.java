@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.nts.pjt5_6.dto.Product;
 import com.nts.pjt5_6.service.DisplayInfoService;
+import com.nts.pjt5_6.service.ReservationService;
 
 
 @Controller
@@ -15,6 +16,8 @@ public class ReservationController {
 	
 	@Autowired
 	DisplayInfoService displayService;
+	@Autowired
+	ReservationService reservationService;
 	
 	@GetMapping(path = "/main")
 	public String mainConvert() {
@@ -36,6 +39,7 @@ public class ReservationController {
 	@GetMapping(path = "/reserve")
 	public String reserveConvert(@RequestParam(name = "id" , required = true) int dpInfoId ,ModelMap model) {
 		model.addAttribute("displayProductInfoId",dpInfoId);
+		model.addAttribute("reservationDate",reservationService.getLocalDate());
 		return "reserve";
 	}
 	
