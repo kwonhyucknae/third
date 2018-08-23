@@ -45,7 +45,9 @@
                         <h2 class="login_header_sub border_bottom"> <span translate="CM-NON_MEMBER_BK_CONFIRMATION">비회원 예약확인</span> </h2>
                         <div class="login_form"> 
                            <label class="label_form" for="resrv_id" translate="CM-BOOKING_NUMBER">예약자 이메일 입력</label> 
-                           <input type="text" class="login_input ng-pristine ng-untouched ng-valid ng-empty" id="resrv_id" name="login_email" aria-invalid="false" placeholder="crong@naver.com" title="예매자이메일">  </div>
+                           <input type="text" class="login_input ng-pristine ng-untouched ng-valid ng-empty" id="resrv_id" name="login_email" aria-invalid="false" placeholder="crong@naver.com" title="예매자이메일">  
+                           <div class="warning_msg">이메일 형식을 맞춰주세요</div>
+                           </div>
                         <button type="submit" form="form1" class="login_btn confirm" > <span translate="CM-MY_BOOKING_CHECK">내 예약 확인</span> </button> <!----> <!----> <!----> <!----> 
                      </form>
                   </div>
@@ -94,7 +96,10 @@
             </div>
          </translater-modal>
       </app>
-
+      
+	<script type="text/javascript" src="./resources/js/utils/text.formatter.js"></script>
+	<script type="text/javascript" src="./resources/js/pages/bookinglogin/bookinglogin.js"></script>
+	
        
    </body>
 </html>

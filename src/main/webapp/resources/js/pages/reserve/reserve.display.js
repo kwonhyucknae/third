@@ -11,6 +11,7 @@ class reservDisplay {
 		this.displayInfoTemplate = document.getElementById("displayInfo");
 		this.imageTemplate = document.getElementById("head-image");
 		this.reservBtn = document.querySelector("div.bk_btn_wrap");
+		this.reservBtn.querySelector("button").disabled = true;
 	}
 	
 	setTitle(jsonDisplayProductData){
@@ -18,6 +19,7 @@ class reservDisplay {
 	}
 	
 	setTicketBody(jsonDisplayPrice) {
+		
 		for(let priceCount = 0; priceCount < jsonDisplayPrice.length; priceCount++){
 			jsonDisplayPrice[priceCount].priceWithComma = formatter.convertMoneyWithCommaByText(jsonDisplayPrice[priceCount].price);
 			this.ticketBody.innerHTML += Handlebars.compile(this.ticketBodyTemplate.innerText)(jsonDisplayPrice[priceCount]);
@@ -47,21 +49,25 @@ class reservDisplay {
 	
 	setOnTextColor(selectElement){
 		selectElement.querySelector("a.ico_minus3").classList.remove("disabled");
+		selectElement.querySelector("a.ico_minus3").style.cursor = "pointer";
 		selectElement.querySelector("input.count_control_input").classList.remove("disabled");
 		selectElement.querySelector("div.individual_price").classList.add("on_color");
 	}
 	
 	setOffTextColor(selectElement){
 		selectElement.querySelector("a.ico_minus3").classList.add("disabled");
+		selectElement.querySelector("a.ico_minus3").style.cursor = "default";
 		selectElement.querySelector("input.count_control_input").classList.add("disabled");
 		selectElement.querySelector("div.individual_price").classList.remove("on_color");
 	}
 	
 	setOnReserveBtn(){
 		this.reservBtn.classList.remove("disable");
+		this.reservBtn.querySelector("button").disabled = false;
 	}
 	setOffReserveBtn(){
 		this.reservBtn.classList.add("disable");
+		this.reservBtn.querySelector("button").disabled = true;
 	}
 	
 	checkHighOrLowDisplayPrice(jsonPriceData){

@@ -4,7 +4,7 @@ class textFormatter {
 		if(type === "tel"){
 			return (/^\d{3}-\d{3,4}-\d{4}$/);
 		}else if(type === "email"){
-			return (/^[\w+_]\w+@\w+\.\w+$/);
+			return (/[A-Za-z0-9_.-]+@[A-Za-z0-9_-]+[.][A-Za-z0-9_-]+/);
 		}else if(type === "name"){
 			return (/[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|a-z0-9_]{4,17}/);
 		}

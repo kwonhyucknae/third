@@ -6,7 +6,7 @@ public class Comments {
 	private int id;
 	private int productId;
 	private int reservationInfoId;
-	private int score;
+	private double score;
 	private String comment;
 	private String reservationEmail;
 	private String reservationDate;
@@ -32,10 +32,10 @@ public class Comments {
 	public void setReservationInfoId(int reservationInfoId) {
 		this.reservationInfoId = reservationInfoId;
 	}
-	public int getScore() {
+	public double getScore() {
 		return score;
 	}
-	public void setScore(int score) {
+	public void setScore(double score) {
 		this.score = score;
 	}
 	public String getComment() {

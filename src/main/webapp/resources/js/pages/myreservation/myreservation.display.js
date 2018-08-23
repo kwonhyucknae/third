@@ -10,7 +10,7 @@ class reservDisp {
 		this.usedCardTemplate = document.getElementById("used-card-item");
 		this.cancelCardTemplate = document.getElementById("cancel-card-item");
 		this.categoryTab = document.querySelector("ul.summary_board");
-		
+		this.cancelPopup = document.querySelector("div.popup_booking_wrapper");
 	}
 	
 	setCardItems(ReservInfo){
@@ -41,6 +41,17 @@ class reservDisp {
 		this.categoryTab.querySelector("li.item:nth-child(2) span.figure").innerText = confirmCount;
 		this.categoryTab.querySelector("li.item:nth-child(3) span.figure").innerText = usedCount;
 		this.categoryTab.querySelector("li.item:nth-child(4) span.figure").innerText = cancelCount;
+	}
+	
+	setOnCancelPopup(dataSet){
+		this.cancelPopup.querySelector("h1.pop_tit span").innerText = dataSet.description;
+		this.cancelPopup.querySelector("small.sm").innerText = dataSet.openingHours;
+		this.cancelPopup.style.display = "block";
+		
+	}
+	
+	setOffCancelPopup(){
+		this.cancelPopup.style.display = "none";
 	}
 	
 	hideUsedAndCancel(){

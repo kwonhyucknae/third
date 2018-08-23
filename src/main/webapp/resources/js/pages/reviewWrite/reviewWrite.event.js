@@ -29,10 +29,10 @@ class revWriteEvent {
 		let uploadImage = document.querySelector("#reviewImageFileOpenInput");
 		uploadImage.addEventListener("change", (evt) => {
             const image = evt.target.files[0];
-//            if(!valideImageType(image)) { 
-//                console.warn("invalide image file type");
-//                return;
-//            }
+            if(!valid.checkImageValid(image)) { 
+                console.warn("invalide image file type");
+                return;
+            }
             this.imageFile = image;
             const thumbImage = document.querySelector(".item_thumb");
             thumbImage.src = window.URL.createObjectURL(image);

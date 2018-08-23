@@ -3,6 +3,8 @@ package com.nts.pjt5_6.service.impl;
 
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ public class CommentServiceImpl implements CommentService{
 	@Autowired
 	private FileInfoMapper fileMapper;
 	
+	private static final String FILE_UPLOAD_LOCATION = "c:/tmp/";
 	
 	@Override
 	@Transactional(readOnly=false)
@@ -32,8 +35,8 @@ public class CommentServiceImpl implements CommentService{
 		commentsMapper.insertReservUserComment(comment);
 		
 		if(comment.getCommentImageFile() != null) {
-			
-			String saveFileName = "img/" + comment.getCommentImageFile().getOriginalFilename();
+			String localDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.M.d_HH.mm.ss"));
+			String saveFileName = "img/" + localDate + comment.getCommentImageFile().getOriginalFilename();
 			
 			ReservationUserCommentImages reservImage = new ReservationUserCommentImages.Builder()
 					.setReservationInfoId(comment.getReservationInfoId())
@@ -46,7 +49,7 @@ public class CommentServiceImpl implements CommentService{
 			fileMapper.insertFileInfo(reservImage);
 			commentsImageMapper.insertReservationImage(reservImage);
 			
-			try (FileOutputStream fileOutput = new FileOutputStream("c:/tmp/" + saveFileName);
+			try (FileOutputStream fileOutput = new FileOutputStream(FILE_UPLOAD_LOCATION + saveFileName);
 				 InputStream inputStream = comment.getCommentImageFile().getInputStream();) {
 				
 				int readCount = 0;

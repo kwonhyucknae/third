@@ -79,4 +79,5 @@ public class DisplayInfoServiceImpl implements DisplayInfoService {
 	public List<ProductPrices> getProductPrices(int dpInfoId) {
 		return prodPriceMapper.selectProductPrices(dpInfoId);
 	}
+	
 }

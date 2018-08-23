@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	let myEmailAddr = document.querySelector("div.ct").getAttribute("data-emailAddr");
 	myreservation.getReservationInfo("/api/reservationInfos?reservationEmail=" + myEmailAddr);
 	
-	console.log(myEmailAddr);
 });
 
 const myreservation = {
@@ -17,12 +16,10 @@ const myreservation = {
 				return JSON.parse(reservationInfo);
 			})
 			.then(jsonReservInfo => {
-				console.log(jsonReservInfo);
-				console.log(jsonReservInfo.items[0].reservationDate);
-				console.log(new Date().getTime());
 				reservDis.setCardItems(jsonReservInfo.items);
 				reservEven.addEventCategoryTab();
 				reservEven.addEventCancelBtn();
+				reservEven.addEventCancelPopup();
 			})
 		}
 }

@@ -71,7 +71,7 @@
 							<span class="text_add_photo">사진 추가</span>
 						</label>
 						<form id="imageForm" method="post" enctype="multipart/form-data">
-						<input type="file" name="file" class="hidden_input" id="reviewImageFileOpenInput" accept="image/*" multiple>
+						<input type="file" name="file" class="hidden_input" id="reviewImageFileOpenInput" multiple>
 						</form>
 						<div class="guide_review">
 							<span>0</span>/400
@@ -115,6 +115,7 @@
 	</footer>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 	<script type="text/javascript" src="./resources/js/utils/ajax.handler.js"></script>
+	<script type="text/javascript" src="./resources/js/pages/reviewWrite/reviewWrite.check.valid.js"></script>
 	<script type="text/javascript" src="./resources/js/pages/reviewWrite/reviewWrite.post.form.js"></script>
 	<script type="text/javascript" src="./resources/js/pages/reviewWrite/reviewWrite.star.rate.js"></script>
 	<script type="text/javascript" src="./resources/js/pages/reviewWrite/reviewWrite.event.js"></script>

@@ -14,6 +14,7 @@ const reviewHandler = {
 			
 			
 			for(let commentNum = 0; commentNum < commentSize; commentNum++){
+				displayComments[commentNum].score = Number(displayComments[commentNum].score).toFixed(1);
 				displayComments[commentNum].reservationEmail = reviewHandler.setEmailEncryption(displayComments[commentNum].reservationEmail);
 				displayComments[commentNum].reservationDate = reviewHandler.setDateFormat(displayComments[commentNum].reservationDate);
 				if(displayComments[commentNum].userCommentImages.length === COMMENT_HAS_NOT_IMG){
