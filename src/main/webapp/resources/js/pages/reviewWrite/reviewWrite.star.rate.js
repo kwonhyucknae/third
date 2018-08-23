@@ -19,6 +19,7 @@ class starRate{
 						return true;
 					}
 				})
+				valid.checkAllValid();
 			}
 		})
 	}

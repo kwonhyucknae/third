@@ -1,7 +1,4 @@
 class reviewPostForm {
-	constructor(){
-		
-	}
 	
 	postFormatter(){
 		let formData = new FormData();

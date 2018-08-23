@@ -727,6 +727,17 @@ button {
     box-sizing: border-box
 }
 
+.bk_btn.disable{
+	display: block;
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.1);
+    background-color: #c7c7c7;
+    cursor: default;
+    font-size: 17px;
+    color: #fff;
+    box-sizing: border-box
+}
+
 .box_bk_btn {
     width: 100%;
     -webkit-box-sizing: border-box;

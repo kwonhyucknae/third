@@ -30,7 +30,7 @@
 				<div class="write_act">
 					<p class="title_star">별점과 이용경험을 남겨주세요.</p>
 					<div class="review_rating rating_point">
-						<div class="rating" data-value = "">
+						<div class="rating" data-value = "0">
 							<!-- [D] 해당 별점이 선택될 때 그 점수 이하의 input엘리먼트에 checked 클래스 추가 -->
 							<input type="checkbox" name="rating2" value="1" class="rating_rdo" title="1점">
 							<span class="span"></span>
@@ -60,7 +60,7 @@
 						</span>
 						<span class="left_space">(단, 리뷰 포인트는 ID 당 1일 최대 5건까지 지급됩니다.)</span>
 					</a>
-					<textarea cols="30" rows="10" class="review_textarea"></textarea>
+					<textarea cols="30" rows="10" class="review_textarea" maxlength="400"></textarea>
 				</div>
 				<!-- //리뷰 입력 -->
  				<!-- 리뷰 작성 푸터 -->
@@ -98,7 +98,7 @@
  				<!-- 리뷰 등록 -->
 				<div class="box_bk_btn">
 				<!--  type="submit" form="imageForm" -->
-					<button class="bk_btn"><span class="btn_txt">리뷰 등록</span></button>
+					<button class="bk_btn disable"><span class="btn_txt">리뷰 등록</span></button>
 				</div>
 				<!-- //리뷰 등록 -->
 			</div>
@@ -115,6 +115,7 @@
 	</footer>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 	<script type="text/javascript" src="./resources/js/utils/ajax.handler.js"></script>
+	<script type="text/javascript" src="./resources/js/utils/text.formatter.js"></script>
 	<script type="text/javascript" src="./resources/js/pages/reviewWrite/reviewWrite.check.valid.js"></script>
 	<script type="text/javascript" src="./resources/js/pages/reviewWrite/reviewWrite.post.form.js"></script>
 	<script type="text/javascript" src="./resources/js/pages/reviewWrite/reviewWrite.star.rate.js"></script>

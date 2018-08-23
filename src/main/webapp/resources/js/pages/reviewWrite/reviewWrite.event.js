@@ -2,62 +2,63 @@ class revWriteEvent {
 	constructor(){
 		this.imageFile;
 		this.displayInfoId = document.querySelector("div.ct").getAttribute("data-displayInfoId");
+		this.reviewContent = document.querySelector("div.review_contents");
+		this.textArea = document.querySelector("textarea.review_textarea");
+		this.totalTextCnt = document.querySelector("div.guide_review > span");
+		this.uploadImage = document.querySelector("#reviewImageFileOpenInput");
+        this.thumbImage = document.querySelector("img.item_thumb");
+		this.imageItemDel = document.querySelector("span.ico_del");
+		this.imageElement = document.querySelector("li.item");
+		this.btnSection = document.querySelector("div.box_bk_btn");
+		this.btnSection.querySelector("button").disabled = true;
+
 	}
 	
 	addEventReviewContent() {
-		let reviewContent = document.querySelector("div.review_contents");
-		let textArea = document.querySelector("textarea.review_textarea");
-		reviewContent.addEventListener("click",(evt) => {
+		this.reviewContent.addEventListener("click",(evt) => {
 			if(evt.target.tagName === "A" || evt.target.tagName === "SPAN"){
 				evt.target.closest("a").classList.add("hide");
-				textArea.focus();
+				this.textArea.focus();
 			}
 		})
 		
-		textArea.addEventListener("blur",(evt) => {
-			if(document.querySelector("textarea.review_textarea").value === ""){
+		this.textArea.addEventListener("blur",(evt) => {
+			if(this.textArea.value === ""){
 				evt.target.closest("div.review_contents").querySelector("a.review_write_info").classList.remove("hide");
 			}
 		})
 		
-		textArea.addEventListener("keyup",(evt) => {
-			document.querySelector("div.guide_review > span").innerText = evt.target.value.length;
+		this.textArea.addEventListener("keyup",(evt) => {
+			this.totalTextCnt.innerText = evt.target.value.length;
+			valid.checkAllValid();
 		})
 	}
 	
 	addEventImageThumb(){
-		let uploadImage = document.querySelector("#reviewImageFileOpenInput");
-		uploadImage.addEventListener("change", (evt) => {
-            const image = evt.target.files[0];
-            if(!valid.checkImageValid(image)) { 
-                console.warn("invalide image file type");
+		this.uploadImage.addEventListener("change", (evt) => {
+            const uploadImage = evt.target.files[0];
+            if(!valid.checkImageValid(uploadImage)) { 
+                alert("invalide image file type");
                 return;
             }
-            this.imageFile = image;
-            const thumbImage = document.querySelector(".item_thumb");
-            thumbImage.src = window.URL.createObjectURL(image);
+            this.imageFile = uploadImage;
+            this.thumbImage.src = window.URL.createObjectURL(uploadImage);
             let imageItem = evt.target.closest("div.review_write_footer_wrap").querySelector("li.item");
             imageItem.style.display = "inline-block";
         })
 	}
 	
 	addEventDeleteThumb(){
-		let imageItemDel = document.querySelector("span.ico_del");
-		
-		imageItemDel.addEventListener("click",(evt) => {
-			let imageItem = document.querySelector("li.item");
-            imageItem.style.display = "none";
+		this.imageItemDel.addEventListener("click",(evt) => {
+            this.imageElement.style.display = "none";
 		})
 	}
 	
 	addEventSendBtn(){
-		let btnSection = document.querySelector("div.box_bk_btn");
-		
-		btnSection.addEventListener("click",(evt) => {
+		this.btnSection.addEventListener("click",(evt) => {
 			let formData = postForm.postFormatter();	
 			ajaxHandler.sendAsTest("/api/reservationUserComments",formData)
 			.then(returnData => {
-				console.log(returnData);
 				window.location.href = "/detail?id=" + this.displayInfoId;
 			})
 			
