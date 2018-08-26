@@ -1,4 +1,4 @@
-package com.nts.pjt3.service;
+package com.nts.pjt5_6.service;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.is;

@@ -26,9 +26,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		Cookie[] cookies = request.getCookies();
 
 		if (cookies != null) {
-			for (int i = 0; i < cookies.length; ++i) {
-				if (cookies[i].getName().equals("loginEmail")) {
-					return cookies[i].getValue();
+			for(Cookie cookie : cookies) {
+				if(cookie.getName().equals("loginEmail")) {
+					return cookie.getValue();
 				}
 			}
 		}

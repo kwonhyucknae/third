@@ -2,7 +2,6 @@ class headerHandler{
 	constructor(){
 		this.header = document.querySelector("div.header");
 		this.headerText = document.querySelector("span.viewReservation");
-		console.log(this.header);
 	}
 	
 	getCookieEmail(){

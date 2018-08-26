@@ -1,4 +1,4 @@
-package com.nts.pjt3.controller.api;
+package com.nts.pjt5_6.controller.api;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -17,30 +17,33 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.nts.pjt5_6.config.ApplicationConfig;
-import com.nts.pjt5_6.controller.api.PromotionApiController;
-import com.nts.pjt5_6.service.PromotionService;
+import com.nts.pjt5_6.controller.api.CategoryApiController;
+import com.nts.pjt5_6.service.CategoryService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes= {ApplicationConfig.class}, loader = AnnotationConfigContextLoader.class)
 @WebAppConfiguration
-public class PromotionApiControllerTest {
+public class CategoryApiControllerTest {
+
 	
 	@Mock
-	private PromotionService promotionService;
+	private CategoryService categoryService;
 
 	@InjectMocks
-	private PromotionApiController promotionApiController;
+	private CategoryApiController categoryApiController;
 	
 	
 	private MockMvc mockMvc;
 	@Before
 	public void setUp() throws Exception{
 		MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(promotionApiController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(categoryApiController).build();
 	}
 	
 	@Test
-	public void testConnectStatus() throws Exception{
-		 mockMvc.perform(get("/promotions")).andExpect(status().isOk());
+	public void testConnectus() throws Exception{
+		 mockMvc.perform(get("/categories")).andExpect(status().isOk());
 	}
+
+	
 }

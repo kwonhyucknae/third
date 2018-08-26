@@ -43,6 +43,7 @@ class reservEvent {
 				.then(()=>{
 					this.cancelSection.appendChild(cancelArticle);
 				});
+				reservDis.setOffCancelPopup();
 			
 			}else if(evt.target.closest("div").className === "btn_gray"){
 				reservDis.setOffCancelPopup();
@@ -58,7 +59,6 @@ class reservEvent {
 			beforeSelectedTab.classList.remove("on");
 			categoryItem.querySelector("a.link_summary_board").classList.add("on");
 			selectedCategory = categoryItem.querySelector("i").className.replace("spr_book2 ","");
-			console.log(selectedCategory);
 			
 			if(selectedCategory === "ico_book2"){
 				reservDis.setAllItemVisible();

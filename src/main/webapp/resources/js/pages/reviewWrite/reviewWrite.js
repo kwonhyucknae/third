@@ -11,6 +11,4 @@ const formatter = new textFormatter();
 	reviewEven.addEventDeleteThumb();
 	reviewEven.addEventSendBtn();
 });
- const reviewWrite = {
-		
- } 
+

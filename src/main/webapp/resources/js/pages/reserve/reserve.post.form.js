@@ -1,12 +1,4 @@
 class formPost {
-	constructor(){
-		this.productId = 1;
-		this.reservationName = document.getElementById("name");
-		this.reservationTel = "011";
-		this.reservationEmail = "1@c";
-		this.todayDate = new Date();
-		this.inputPrice = document.getElementsByName("price_cnt");
-	}
 	
 	postFormatter(){
 		let params ={};
@@ -17,19 +9,20 @@ class formPost {
 		params.reservationEmail = document.querySelector("[name='email']").value;
 		params.reservationDate = this.getReservationDate();
 		params.prices = this.getPrices();
-		console.log("params",params);
 		return params;
 	}
 	
 	getPrices(){
+		let inputPrice = document.getElementsByName("price_cnt");
 		let prices = [];
 		
-		for(let priceNum = 0; priceNum < this.inputPrice.length; priceNum++){
+		inputPrice.forEach((element) => {
 			let priceIdAndCount = {};
-			priceIdAndCount.productPriceId = this.inputPrice[priceNum].getAttribute("data-priceId");
-			priceIdAndCount.count = this.inputPrice[priceNum].value;
+			priceIdAndCount.productPriceId = element.getAttribute("data-priceId");
+			priceIdAndCount.count = element.value;
 			prices.push(priceIdAndCount);
-		}
+		})
+		
 		return prices;
 	}
 	

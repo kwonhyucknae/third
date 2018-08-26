@@ -6,9 +6,10 @@ const animation = {
 		addEventInfiniteSlide : function(jsonPromotionData){
 			let promotionTemplate = document.getElementById("promotionItem").innerHTML;
 			
-			for(let dataNum = 0; dataNum < jsonPromotionData.length; dataNum++){
-				animation.promotionImgHTML.innerHTML += Handlebars.compile(promotionTemplate)(jsonPromotionData[dataNum]);
-			}
+			jsonPromotionData.forEach((element) => {
+				animation.promotionImgHTML.innerHTML += Handlebars.compile(promotionTemplate)(element);
+			})
+			
 			animation.promotionImgHTML.style.right="0px";
 			animation.promotionLength = jsonPromotionData.length;
 			let firstVisualImage = document.querySelector("ul.visual_img li:nth-child(1)");

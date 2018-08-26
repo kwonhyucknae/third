@@ -57,7 +57,7 @@ class revWriteEvent {
 	addEventSendBtn(){
 		this.btnSection.addEventListener("click",(evt) => {
 			let formData = postForm.postFormatter();	
-			ajaxHandler.sendAsTest("/api/reservationUserComments",formData)
+			ajaxHandler.sendFormDataAsPost("/api/reservationUserComments",formData)
 			.then(returnData => {
 				window.location.href = "/detail?id=" + this.displayInfoId;
 			})

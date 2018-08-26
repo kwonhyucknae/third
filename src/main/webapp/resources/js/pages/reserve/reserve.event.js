@@ -72,17 +72,16 @@ class reserveEvent {
 	addEventAgreementFold(){
 		this.agreementFold.addEventListener("click",function(evt){
 			if(evt.target.className === "btn_text"){
-				if(evt.target.innerText === "보기"){
-					let agreement = evt.target.closest("div.agreement");
-					agreement.classList.add("open");
-					agreement.querySelector("i.fn").classList.remove("fn-down2");
-					agreement.querySelector("i.fn").classList.add("fn-up2");					
+				
+				let agreement = evt.target.closest("div.agreement");
+				let icon = agreement.querySelector("i.fn");
+				agreement.classList.toggle("open");
+				icon.classList.toggle("fn-down2");
+				icon.classList.toggle("fn-up2");
+				
+				if(evt.target.innerText === "보기"){				
 					evt.target.innerText = "접기";
-				} else if(evt.target.innerText === "접기"){
-					let agreement = evt.target.closest("div.agreement");
-					agreement.classList.remove("open");
-					agreement.querySelector("i.fn").classList.remove("fn-up2");
-					agreement.querySelector("i.fn").classList.add("fn-down2");					
+				} else if(evt.target.innerText === "접기"){			
 					evt.target.innerText = "보기";
 				}
 			}
@@ -91,12 +90,10 @@ class reserveEvent {
 	
 	addEventReservationBtn(){
 		let reservationBtn = document.querySelector(".bk_btn");
-		reservationBtn.addEventListener("click",function(evt){
+		reservationBtn.addEventListener("click",(evt) => {
 			let params = postFormat.postFormatter();
-			console.log(params);
 			ajaxHandler.sendAsPost("/api/reservationInfos",params)
 			.then(returnData => {
-				console.log(returnData);
 				window.location.href = "/main";
 			})
 		})

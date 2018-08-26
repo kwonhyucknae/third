@@ -1,4 +1,4 @@
-package com.nts.pjt3.controller.api;
+package com.nts.pjt5_6.controller.api;
 
 
 import org.junit.Before;
@@ -79,8 +79,5 @@ public class ProductApiControllerTest{
 		verify(productService, atLeast(1)).getProducts(1,0);
 		verify(productService, atLeast(1)).getTotalCount(1);
  	}
-	
-	
-	
 	
 }

@@ -12,17 +12,16 @@ const reviewHandler = {
 				commentSize = Math.min(commentSize,DETAIL_PAGE_LIMIT);
 			}
 			
-			
-			for(let commentNum = 0; commentNum < commentSize; commentNum++){
-				displayComments[commentNum].score = Number(displayComments[commentNum].score).toFixed(1);
-				displayComments[commentNum].reservationEmail = reviewHandler.setEmailEncryption(displayComments[commentNum].reservationEmail);
-				displayComments[commentNum].reservationDate = reviewHandler.setDateFormat(displayComments[commentNum].reservationDate);
-				if(displayComments[commentNum].userCommentImages.length === COMMENT_HAS_NOT_IMG){
-					reviewLocation.innerHTML += Handlebars.compile(document.getElementById("review-no-image").innerText)(displayComments[commentNum]);
+			displayComments.forEach((element) => {
+				element.score = Number(element.score).toFixed(1);
+				element.reservationEmail = reviewHandler.setEmailEncryption(element.reservationEmail);
+				element.reservationDate = reviewHandler.setDateFormat(element.reservationDate);
+				if(element.userCommentImages.length === COMMENT_HAS_NOT_IMG){
+					reviewLocation.innerHTML += Handlebars.compile(document.getElementById("review-no-image").innerText)(element);
 				}else{
-					reviewLocation.innerHTML += Handlebars.compile(document.getElementById("review-with-image").innerText)(displayComments[commentNum]);
+					reviewLocation.innerHTML += Handlebars.compile(document.getElementById("review-with-image").innerText)(element);
 				}
-			}
+			})
 		},
 		
 		setAvgScoreAndCount : function(displayInfoData){

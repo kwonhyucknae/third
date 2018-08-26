@@ -20,10 +20,10 @@ class reservDisplay {
 	
 	setTicketBody(jsonDisplayPrice) {
 		
-		for(let priceCount = 0; priceCount < jsonDisplayPrice.length; priceCount++){
-			jsonDisplayPrice[priceCount].priceWithComma = formatter.convertMoneyWithCommaByText(jsonDisplayPrice[priceCount].price);
-			this.ticketBody.innerHTML += Handlebars.compile(this.ticketBodyTemplate.innerText)(jsonDisplayPrice[priceCount]);
-		}
+		jsonDisplayPrice.forEach((element) => {
+			element.priceWithComma = formatter.convertMoneyWithCommaByText(element.price);
+			this.ticketBody.innerHTML += Handlebars.compile(this.ticketBodyTemplate.innerText)(element);
+		})
 	}
 	
 	setDisplayInfo(jsonDisplayData){
@@ -34,9 +34,9 @@ class reservDisplay {
 	setPrice(jsonDisplayPrice) {
 		let priceText = "";
 		
-		for(let priceCount = 0; priceCount < jsonDisplayPrice.length; priceCount++){
-			priceText += jsonDisplayPrice[priceCount].priceTypeName + " 타입 : " + jsonDisplayPrice[priceCount].price + "원 "; 
-		}
+		jsonDisplayPrice.forEach((element) => {
+			priceText += element.priceTypeName + " 타입 : " + element.price + "원 "; 
+		})
 		return formatter.convertMoneyWithCommaByText(priceText);
 	}
 	
@@ -75,14 +75,14 @@ class reservDisplay {
 		let highPrice = jsonPriceData[this.FIRST_ITEM].price;
 		let priceHighOrLow = new Map();
 		
-		for(let count = 0; count < jsonPriceData.length; count++){
-			if(Number(lowPrice) > Number(jsonPriceData[count].price)){
-				lowPrice = jsonPriceData[count].price;
+		jsonPriceData.forEach((element) => {
+			if(Number(lowPrice) > Number(element.price)){
+				lowPrice = element.price;
 			}
-			if(Number(highPrice) < Number(jsonPriceData[count].price)){
-				highPrice = jsonPriceData[count].price;
+			if(Number(highPrice) < Number(element.price)){
+				highPrice = element.price;
 			}
-		}
+		})
 		
 		priceHighOrLow.set("high",formatter.convertMoneyWithCommaByText(highPrice));
 		priceHighOrLow.set("low",formatter.convertMoneyWithCommaByText(lowPrice));

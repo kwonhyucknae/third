@@ -1,4 +1,4 @@
-package com.nts.pjt3.controller.api;
+package com.nts.pjt5_6.controller.api;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
